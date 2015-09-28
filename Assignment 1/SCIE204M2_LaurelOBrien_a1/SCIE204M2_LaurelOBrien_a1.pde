@@ -19,6 +19,7 @@ color maroon = color(148, 85, 83);
 color gold = color(226, 191, 26);
 color bronze = color(209, 170, 75);
 color aquaMarine = color(125, 216, 205);
+color blindingYellow = color(244, 227, 195);
 
 color suedeBrown = color(166, 124, 82);
 color lightBrown = color(119, 94, 73);
@@ -37,10 +38,11 @@ void setup()
   noStroke(); //default to strokeless shapes
 }
 
-//call function that draws Bard
+//call functions that draw Bard and his companion Meep
 void draw()
 {
   drawBard();
+  drawMeep ();
 }
 
 //draw Bard, the Wandering Tinkerer
@@ -721,8 +723,84 @@ void drawBard()
   endShape(CLOSE);
   
   //draw eyes and mouth
-  fill(244, 227, 195); //near-white, glowy yellow
+  fill(blindingYellow); //near-white, glowy yellow
   ellipse(302, 204, 9, 11); //mouth
   ellipse(298, 186, 10, 12); //left eye
   ellipse(318, 195, 12, 10); //right eye
+}
+
+//draw Meep, Bard's companion
+void drawMeep() 
+{
+  noStroke(); //fill only
+  
+  //draw body
+  fill(bronze);
+  ellipse(109, 113, 43, 40); //head
+  ellipse(120, 166, 21, 26); //abdomen
+  beginShape(); //neck
+    vertex(128.2,121.6);
+    vertex(121.2,135);
+    vertex(124.8,149);
+    vertex(130,160.9);
+    vertex(109.9,165.5);
+    vertex(112,152.3);
+    vertex(108.9,145);
+    vertex(102,135.6);
+    vertex(90,122.6);
+  endShape(CLOSE);
+  beginShape(); //feet
+    vertex(110.2,168.7);
+    vertex(114,180.8);
+    vertex(123,192.5);
+    vertex(123,181);
+    vertex(128.5,178);
+    vertex(134.2,184.8);
+    vertex(132.4,169.8);
+    vertex(130,160.9);
+  endShape(CLOSE);
+  
+  //draw eyes and eye stripes
+  stroke(maroon);
+  noFill(); //lines only
+  beginShape(); //right eye stripe
+    vertex(127, 104);
+    vertex(122, 115);
+    vertex(125, 123);
+    vertex(125, 125);
+  endShape(); //no CLOSE: open shape
+  beginShape(); //left eye stripe
+    vertex(88, 110);
+    vertex(107, 118);
+    vertex(109, 125);
+    vertex(100, 132);
+  endShape(); //still no CLOSE: open shape
+  fill(blindingYellow); //same eye colour as Bard, keep maroon stroke from stripes
+  ellipse(106, 120, 9, 13); //left eye
+  ellipse(125, 116, 7, 12); //right eye
+  
+  //draw shadows
+  noStroke(); //remove stroke leftover from drawing eyes
+  fill(148, 85, 83, 255/4); //maroon rgb plus alpha value expression: 25% opacity
+  beginShape(); //neck shadow
+    vertex(125,127.9);
+    vertex(119.5,133.1);
+    vertex(110,134.7);
+    vertex(97.2,130.3);
+    vertex(102,135.6);
+    vertex(106.4,141.6);
+    vertex(120.3,146.8);
+    vertex(123.1,142.2);
+    vertex(121.2,135);
+  endShape(CLOSE);
+  beginShape(); //feet shadow
+    vertex(114,180.8);
+    vertex(120.3,184.6);
+    vertex(126,175.6);
+    vertex(130,176.7);
+    vertex(134.2,184.8);
+    vertex(128.5,178);
+    vertex(123,181);
+    vertex(123,193);
+  endShape(CLOSE);
 }
