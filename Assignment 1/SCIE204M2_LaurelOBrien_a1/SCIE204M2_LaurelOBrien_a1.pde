@@ -59,6 +59,13 @@ void draw()
 //draw Bard, the Wandering Tinkerer
 void drawBard()
 {
+  //draw shadow extending in front of bard
+  fill(223, 224, 225); //pale bluish-grey
+  rect(181, 556, 177, 124); //shadow
+  fill(#f3f3f3); //light grey, background colour
+  rect(259, 544, 22, 69); //cutout for legs in shadow
+  rect(274, 551, 122, 21); //cutout for gap between right foot and ground
+  
   //draw ponytail
   fill(darkGrey);
   beginShape(); //ponytail hair
