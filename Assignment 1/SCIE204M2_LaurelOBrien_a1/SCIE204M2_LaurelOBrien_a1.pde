@@ -6,7 +6,7 @@
 // Draw a character
 /////////////////////////////
 
-//initialize colour variables for global use
+//initialize and declare colour variables for global use
 color lightGrey = color(214, 211, 211);
 color midGrey = color(190, 185, 185);
 color darkGrey = color(168, 165, 165);
@@ -31,19 +31,30 @@ color midPurple = color(71, 63, 81);
 color darkPurple = color(61, 56, 68);
 color deepPurple = color(48, 45, 53);
 
+//initialize and declare variable for animating the drawGlow() effect
+int growVar = 0;
+
+
+
 void setup()
 {
   size(480, 640); //set canvas size, portrait orientation
   background(#f3f3f3); //light grey
-  noStroke(); //default to strokeless shapes
+  noStroke(); //default starts as stroke-less shapes
+  frameRate(12); //set framerate to 12fps 
 }
+
+
 
 //call functions that draw Bard and his companion Meep
 void draw()
 {
-  drawBard();
-  drawMeep ();
+  drawGlow(); //draw pulsing glow effect on Bard's staff
+  drawBard(); //draw bard
+  drawMeep(); //draw meep
 }
+
+
 
 //draw Bard, the Wandering Tinkerer
 void drawBard()
@@ -783,4 +794,23 @@ void drawMeep()
     vertex(123, 181);
     vertex(123, 193);
   endShape(CLOSE);
+}
+
+//draw pulsing glow from tip of Bard's staff, using
+//low opacity fill to stack up brightness as glow expands
+void drawGlow() 
+{ 
+  fill(125, 216, 205, 255/16); //aquaMarine plus alpha value: lowered opacity
+  
+  ellipse(65, 442, 23 + growVar, 29 + growVar);//draw an ellipse whose size is variable starting at 23x29
+  
+  //if growVar reaches 42px or higher, wipe the glow with a large grey ellipse
+  //and reset growVar to 0 so the animation starts over
+  if (growVar >= 42) {
+    fill(#f3f3f3); //light grey, same as setup() background()
+    ellipse(65, 442, 100, 100); //ellipse larger than glow
+    growVar = 0; //reset (re-assign) growVar as 0
+  } else {
+    growVar += 3; //increment growVar by 3 if it isn't 42 yet
+  }
 }
