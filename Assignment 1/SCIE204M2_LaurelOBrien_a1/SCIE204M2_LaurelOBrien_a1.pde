@@ -19,7 +19,7 @@ color maroon = color(148, 85, 83);
 color gold = color(226, 191, 26);
 color bronze = color(209, 170, 75);
 color aquaMarine = color(125, 216, 205);
-color blindingYellow = color(244, 227, 195);
+color lightYellow = color(244, 227, 195);
 
 color suedeBrown = color(166, 124, 82);
 color lightBrown = color(119, 94, 73);
@@ -33,7 +33,7 @@ color deepPurple = color(48, 45, 53);
 
 void setup()
 {
-  size(480, 640); //set canvas size
+  size(480, 640); //set canvas size, portrait orientation
   background(#f3f3f3); //light grey
   noStroke(); //default to strokeless shapes
 }
@@ -115,7 +115,6 @@ void drawBard()
     vertex(398, 370);
     vertex(327, 400);
   endShape(CLOSE);
-  
   fill(suedeBrown);
   beginShape(); //right suede band
     vertex(343, 392);
@@ -124,7 +123,6 @@ void drawBard()
     vertex(416, 416);
     vertex(358, 438);
   endShape(CLOSE);
-  
   fill(maroon);
   beginShape(); //draw right red band
     vertex(411, 382);
@@ -137,7 +135,6 @@ void drawBard()
     vertex(343, 410);
     vertex(368, 394);
   endShape(CLOSE);
-  
   fill(lightPurple);
   beginShape(); //right purple band (top)
     vertex(339, 388);
@@ -159,7 +156,6 @@ void drawBard()
     vertex(371, 441);
     vertex(357, 445);
   endShape(CLOSE);
-  
   fill(lightGrey);
   beginShape(); //draw right glove
     vertex(364, 443);
@@ -170,19 +166,16 @@ void drawBard()
     vertex(418, 459);
     vertex(377, 456);
   endShape(CLOSE);
-  
   fill(darkBrown);
-  beginShape(); //draw right pinky
+  beginShape(); //right pinky
     vertex(377, 456);
     vertex(365, 461);
     vertex(363, 471);
     vertex(379, 473);
     vertex(384, 462);
-    //points="377.4,455.8 365.3,461.3 363.1,471.2 378.5,473.4 384,462.4 "
   endShape(CLOSE);
-  
   fill(midBrown);
-  beginShape(); //draw index finger
+  beginShape(); //right index finger
     vertex(418, 459);
     vertex(412, 454);
     vertex(403, 455);
@@ -194,7 +187,7 @@ void drawBard()
   endShape(CLOSE);
   
   fill(lightBrown);
-  beginShape(); //draw right thumb
+  beginShape(); //right thumb
     vertex(377, 456);
     vertex(385, 444);
     vertex(399, 446);
@@ -233,7 +226,7 @@ void drawBard()
     vertex(342, 497);
   endShape();
   
-  //draw feet
+  //draw legs
   fill(deepPurple);
   beginShape(); //left foot
     vertex(210, 552);
@@ -248,7 +241,6 @@ void drawBard()
     vertex(325, 563);
     vertex(310, 567);
   endShape(CLOSE);
-  
   fill(darkPurple);
   beginShape(); //left ankle
     vertex(204, 541);
@@ -265,7 +257,6 @@ void drawBard()
     vertex(319, 548);
     vertex(307, 554);
   endShape(CLOSE);
-  
   fill(midPurple);
   beginShape(); //left calf
     vertex(195, 531);
@@ -282,7 +273,6 @@ void drawBard()
     vertex(304, 535);
     vertex(298, 532);
   endShape(CLOSE);
-  
   fill(lightPurple);
   beginShape(); //left knee
     vertex(186, 514);
@@ -303,15 +293,7 @@ void drawBard()
     vertex(295, 517);
   endShape(CLOSE);
   
-  fill(midGreen);
-  beginShape(); //green belly
-    vertex(331, 313);
-    vertex(337, 331);
-    vertex(332, 383);
-    vertex(160, 358);
-    vertex(194, 242);
-  endShape(CLOSE);
-  
+  //draw hair, ears, and antenna
   fill(midGrey);
   beginShape(); //hair
     vertex(308, 139);
@@ -329,8 +311,7 @@ void drawBard()
     vertex(349, 182);
     vertex(342, 176);
     vertex(341, 156);
-  endShape(CLOSE);
-  
+  endShape(CLOSE); 
   fill(lightGrey);
   beginShape(); //left ear
     vertex(305, 163);
@@ -346,317 +327,317 @@ void drawBard()
     vertex(347, 174);
     vertex(329, 186);
   endShape(CLOSE);
-  
   fill(maroon);
   ellipse(320, 138, 22, 22); //mask antenna
-  
   fill(darkBrown);
   beginShape(); //mask antenna wrapping
-    vertex(313.5, 147.4);
-    vertex(306.9, 170.5);
-    vertex(319.1, 174.9);
-    vertex(326.8, 147.4);
-    vertex(320.2, 143);
-    vertex(313.5, 147.4);
+    vertex(314, 147);
+    vertex(307, 171);
+    vertex(319, 175);
+    vertex(327, 147);
+    vertex(320, 143);
+    vertex(314, 147);
   endShape(CLOSE);
   
+  //draw belly and purple apron
+  fill(midGreen);
+  beginShape(); //belly
+    vertex(331, 313);
+    vertex(337, 331);
+    vertex(332, 383);
+    vertex(160, 358);
+    vertex(194, 242);
+  endShape(CLOSE);
   fill(midPurple);
   beginShape(); //purple apron
-    vertex(205.6,353.4);
-    vertex(327.9,367.7);
-    vertex(338.9,356.7);
-    vertex(344.4,357.8);
-    vertex(335.6,380.9);
-    vertex(334.5,399.6);
-    vertex(322.4,434.9);
-    vertex(293.7,460.2);
-    vertex(272.8,462.4);
-    vertex(245.3,450.3);
-    vertex(188,398.5);
+    vertex(206, 353);
+    vertex(328, 368);
+    vertex(339, 357);
+    vertex(344, 358);
+    vertex(336, 381);
+    vertex(335, 400);
+    vertex(322, 435);
+    vertex(294, 460);
+    vertex(273, 462);
+    vertex(245, 450);
+    vertex(188, 399);
   endShape(CLOSE);
   
+  //draw left sleeve
   fill(lightGreen);
-  beginShape(); //left sleeve
-    vertex(172, 239.9);
-    vertex(157.1, 266.4);
-    vertex(153.8, 275.2);
-    vertex(140.6, 286.2);
-    vertex(126.3, 325.8);
-    vertex(205.8, 339.1);
-    vertex(203.4, 315.9);
+  beginShape();
+    vertex(172, 240);
+    vertex(157, 266);
+    vertex(154, 275);
+    vertex(141, 286);
+    vertex(126, 326);
+    vertex(206, 339);
+    vertex(203, 316);
     vertex(194, 289);
     vertex(200, 263);
-    vertex(229.8, 216.8);
-    vertex(211.1, 200.3);
-    vertex(180.3, 216.8);
+    vertex(230, 217);
+    vertex(211, 200);
+    vertex(180, 217);
   endShape(CLOSE);
   
+  //draw red apron and shoulderpad
   fill(maroon);
   beginShape(); //red apron
-    vertex(212.2, 300.5);
-    vertex(227.6, 388.6);
-    vertex(278.3, 418.4);
-    vertex(325.7, 389.7);
-    vertex(320.2, 358.9);
-    vertex(321.3, 325.8);
+    vertex(212, 301);
+    vertex(228, 389);
+    vertex(278, 418);
+    vertex(326, 390);
+    vertex(320, 359);
+    vertex(321, 326);
   endShape(CLOSE);
   beginShape(); //shoulderpad
-    vertex(227.8,206.4);
-    vertex(221.9,194.7);
-    vertex(197.7,198.8);
-    vertex(181,209.1);
-    vertex(172,230);
-    vertex(172,239.9);
-    vertex(188,215.7);
-    vertex(200.1,216.8);
-    vertex(206.7,204.7);
-    vertex(208.9,215.7);
-    vertex(221,220.1);
+    vertex(228, 206);
+    vertex(222, 195);
+    vertex(198, 199);
+    vertex(181, 209);
+    vertex(172, 230);
+    vertex(172, 240);
+    vertex(188, 216);
+    vertex(200, 217);
+    vertex(207, 205);
+    vertex(209, 216);
+    vertex(221, 220);
   endShape(CLOSE);
   
+  //draw tied-off section of beard
   fill(darkBrown);
   beginShape(); //beard wrapping
-    vertex(262.9,384.2);
-    vertex(270.6,390.8);
-    vertex(278.3,385.3);
-    vertex(286,346.2);
-    vertex(276.1,342.4);
-    vertex(261.8,346.2);
+    vertex(263, 384);
+    vertex(271, 391);
+    vertex(278, 385);
+    vertex(286, 346);
+    vertex(276, 342);
+    vertex(262, 346);
   endShape(CLOSE);
-  
   fill(lightGrey);
   beginShape(); //tip of beard
-    vertex(262.9,384.5);
-    vertex(254.1,392.1);
-    vertex(249.7,401.9);
-    vertex(257.4,399.2);
-    vertex(261.8,423);
-    vertex(268.4,423);
-    vertex(280.5,404.4);
-    vertex(282.7,392.1);
-    vertex(278.3,385.4);
+    vertex(263, 385);
+    vertex(254, 392);
+    vertex(250, 402);
+    vertex(257, 399);
+    vertex(262, 423);
+    vertex(268, 423);
+    vertex(281, 404);
+    vertex(283, 392);
+    vertex(278, 385);
   endShape(CLOSE);
   
+  //draw left arm bands
   fill(suedeBrown);
   beginShape(); //left suede arm band
-    vertex(118.3,344.6);
-    vertex(105.3,388.6);
-    vertex(116.4,402.9);
-    vertex(160.4,385.3);
-    vertex(207.8,394.1);
-    vertex(211.7,356.7);
-    vertex(198,333.5);
-    vertex(151,321.2);
-    vertex(131.2,329.2);
+    vertex(118, 345);
+    vertex(105, 389);
+    vertex(116, 403);
+    vertex(160, 385);
+    vertex(208, 394);
+    vertex(212, 357);
+    vertex(198, 334);
+    vertex(151, 321);
+    vertex(131, 329);
   endShape(CLOSE);
-  
   fill(lightPurple);
   beginShape(); //left top purple band
-    vertex(118.3,344.6);
-    vertex(122.9,329.1);
-    vertex(126.2,325.8);
-    vertex(150.5,318.1);
-    vertex(194,326.9);
-    vertex(211,342.4);
-    vertex(211.7,356.7);
-    vertex(195.7,333.5);
-    vertex(145,324.7);
+    vertex(118, 345);
+    vertex(123, 329);
+    vertex(126, 326);
+    vertex(151, 318);
+    vertex(194, 327);
+    vertex(211, 342);
+    vertex(212, 357);
+    vertex(196, 334);
+    vertex(145, 325);
   endShape(CLOSE);
-  
   fill(maroon);
   beginShape(); //left red band
-    vertex(108,358.9);
-    vertex(108,372.1);
-    vertex(105.3,388.6);
-    vertex(111.9,384.2);
-    vertex(115.3,378.7);
-    vertex(135.1,372.1);
-    vertex(185.8,371);
-    vertex(208.9,383.1);
-    vertex(207.8,394.1);
-    vertex(214.4,387.5);
-    vertex(216.6,372.1);
-    vertex(213.3,361.1);
-    vertex(197.9,349);
-    vertex(151.6,339.1);
-    vertex(121.8,349);
+    vertex(108, 359);
+    vertex(108, 372);
+    vertex(105, 389);
+    vertex(112, 384);
+    vertex(115, 379);
+    vertex(135, 372);
+    vertex(186, 371);
+    vertex(209, 383);
+    vertex(208, 394);
+    vertex(214, 388);
+    vertex(217, 372);
+    vertex(213, 361);
+    vertex(198, 349);
+    vertex(152, 339);
+    vertex(122, 349);
   endShape(CLOSE);
   
   //draw staff
   fill(aquaMarine);
   ellipse(65, 442, 23, 29); //jewel on top of globe
   ellipse(101, 398, 26, 23); //jewel on edge of globe
-  
   fill(gold);
   ellipse(104, 438, 87, 86); //globe of staff
-  
   fill(lightPurple);
-  beginShape(); //left bottom purple band, overlapping globe
-    vertex(124.5,412.8);
-    vertex(120.8,406.9);
-    vertex(115.5,390.8);
-    vertex(127.3,380.9);
-    vertex(173,375.4);
-    vertex(201,383.1);
-    vertex(201,405.1);
+  beginShape(); //left bottom purple band (overlapping globe)
+    vertex(125, 413);
+    vertex(121, 407);
+    vertex(116, 391);
+    vertex(127, 381);
+    vertex(173, 375);
+    vertex(201, 383);
+    vertex(201, 405);
   endShape(CLOSE);
-  
   fill(aquaMarine);
   ellipse(98, 465, 26, 24); //draw jewel on front of globe
-  
   fill(lightBrown);
   beginShape(); //left thumb (behind staff)
-    vertex(196.8,400.7);
-    vertex(188,402);
-    vertex(189,418);
-    vertex(211,413);
+    vertex(197, 401);
+    vertex(188, 402);
+    vertex(189, 418);
+    vertex(211, 413);
   endShape(CLOSE);
-  
   fill(lightGreen);
   beginShape(); //staff handle
-    vertex(166,463.5);
-    vertex(204.5,459.1);
-    vertex(222,453);
-    vertex(228,446);
-    vertex(230,411);
-    vertex(218.8,407.3);
-    vertex(147.2,419.5);
+    vertex(166, 464);
+    vertex(205, 459);
+    vertex(222, 453);
+    vertex(228, 446);
+    vertex(230, 411);
+    vertex(219, 407);
+    vertex(147, 420);
   endShape(CLOSE);
-  
   fill(gold);
   beginShape(); //gold plate on handle
-    vertex(238.6,414);
-    vertex(225,409.4);
-    vertex(216.6,420.6);
-    vertex(217.7,437.1);
-    vertex(225.4,448.1);
-    vertex(239.8,441.5);
+    vertex(239, 414);
+    vertex(225, 409);
+    vertex(217, 421);
+    vertex(218, 437);
+    vertex(225, 448);
+    vertex(240, 442);
   endShape(CLOSE);
   
+  //draw left hand
   fill(lightGrey);
   beginShape(); //left glove
-    vertex(196.8,400.7);
-    vertex(186.9,395.2);
-    vertex(147.2,399.6);
-    vertex(126.3,408.4);
-    vertex(124.1,429.4);
-    vertex(161.5,431.6);
-    vertex(189.1,414);
-    vertex(192,404);
+    vertex(197, 401);
+    vertex(187, 395);
+    vertex(147, 400);
+    vertex(126, 408);
+    vertex(124, 429);
+    vertex(162, 432);
+    vertex(189, 414);
+    vertex(192, 404);
   endShape(CLOSE);
-  
   fill(midBrown);
   beginShape(); //left pinky finger
-    vertex(124.1,429.4);
-    vertex(121.9,448.1);
-    vertex(136.2,460.2);
-    vertex(148.3,462.4);
-    vertex(132.9,429.4);
-    vertex(128.5,427.2);
+    vertex(124, 429);
+    vertex(122, 448);
+    vertex(136, 460);
+    vertex(148, 462);
+    vertex(133, 429);
+    vertex(129, 427);
   endShape(CLOSE);
-  
   fill(lightBrown);
   beginShape(); //left middle finger
-    vertex(132.6,429.4);
-    vertex(137.2,455.8);
-    vertex(152.7,472.3);
-    vertex(165.6,476.7);
-    vertex(173,473.4);
-    vertex(173,463.5);
-    vertex(160.4,450.3);
-    vertex(158.8,431.6);
-    vertex(144.7,426.1);
+    vertex(133, 429);
+    vertex(137, 456);
+    vertex(153, 472);
+    vertex(166, 477);
+    vertex(173, 473);
+    vertex(173, 464);
+    vertex(160, 450);
+    vertex(159, 432);
+    vertex(145, 426);
   endShape(CLOSE);
   beginShape(); //left index finger
-    vertex(185.5,416.2);
-    vertex(177.9,412.8);
-    vertex(164.8,418.4);
-    vertex(161.5,431.6);
-    vertex(170.3,449.2);
-    vertex(181.4,461.3);
-    vertex(192.9,470.1);
-    vertex(199,465.7);
-    vertex(199,453.6);
-    vertex(189.9,433.8);
+    vertex(186, 416);
+    vertex(178, 413);
+    vertex(165, 418);
+    vertex(162, 432);
+    vertex(170, 449);
+    vertex(181, 461);
+    vertex(193, 470);
+    vertex(199, 466);
+    vertex(199, 454);
+    vertex(190, 434);
   endShape(CLOSE);
   
+  //draw staff handle
   fill(darkPurple);
   beginShape(); //purple staff handle
-    vertex(255.2,416.2);
-    vertex(257.4,438.2);
-    vertex(237.5,439.3);
-    vertex(230.9,431.6);
-    vertex(229.8,417.3);
-    vertex(238.6,414);
+    vertex(255, 416);
+    vertex(257, 438);
+    vertex(238, 439);
+    vertex(231, 432);
+    vertex(230, 417);
+    vertex(239, 414);
   endShape(CLOSE);
-  
   fill(deepPurple);
   beginShape(); //darker purple staff handle
-    vertex(325.7,402.9);
-    vertex(306.8,407.3);
-    vertex(282.6,410.6);
-    vertex(254.9,416.2);
-    vertex(248,422.8);
-    vertex(248,430.5);
-    vertex(257.4,438.2);
-    vertex(278.3,429.4);
-    vertex(287.1,421.7);
-    vertex(314.6,417.3);
+    vertex(326, 403);
+    vertex(307, 407);
+    vertex(283, 411);
+    vertex(255, 416);
+    vertex(248, 423);
+    vertex(248, 431);
+    vertex(257, 438);
+    vertex(278, 429);
+    vertex(287, 422);
+    vertex(315, 417);
   endShape(CLOSE);
   
   //draw tassels and knots on apron (keep previous fill of deepPurple)
   fill(lightPurple);
-  triangle(240, 465, 248, 450.2, 256, 465); //first tassel
-  triangle(279.7, 476, 288.2, 461.2, 296.7, 476); //second tassel
-  triangle(310.5, 456, 319.1, 441.2, 327.6, 456); //third tassel
-  triangle(327, 420, 334, 407.8, 341, 420); //fourth tassel
+  triangle(240, 465, 248, 450, 256, 465); //first tassel
+  triangle(280, 476, 288, 461, 297, 476); //second tassel
+  triangle(311, 456, 319, 441, 328, 456); //third tassel
+  triangle(327, 420, 334, 409, 341, 420); //fourth tassel
   ellipse(248, 451, 13, 10); //first knot
   ellipse(287, 462, 14, 9); //second knot
   ellipse(316, 441, 14, 10); //third knot
   ellipse(333, 408, 12, 8); //fourth knot
   
+  //draw beard
   fill(midGrey);
   beginShape(); //beard midtones
-    vertex(208,239.9);
-    vertex(208,266.4);
-    vertex(209,296.1);
-    vertex(227,321.4);
-    vertex(249.7,337.4);
-    vertex(300.5,336.5);
-    vertex(329.5,318.7);
-    vertex(335.6,306.3);
-    vertex(343.3,317.2);
-    vertex(349.9,279.6);
-    vertex(346.8,237);
+    vertex(208, 240);
+    vertex(208, 266);
+    vertex(209, 296);
+    vertex(227, 321);
+    vertex(250, 337);
+    vertex(301, 337);
+    vertex(330, 319);
+    vertex(336, 306);
+    vertex(343, 317);
+    vertex(350, 280);
+    vertex(347, 237);
   endShape(CLOSE);
-  
   fill(darkGrey);
   beginShape(); //beard shadows
-    vertex(318,313);
-    vertex(310.8,325);
-    vertex(300.9,334);
-    vertex(299.9,315);
-    vertex(292,329);
-    vertex(285,336);
-    vertex(275,316);
-    vertex(273,336);
-    vertex(263,328);
-    vertex(255,315);
-    vertex(254,332);
-    vertex(246,326);
-    vertex(236,315);
-    vertex(241,331);
-    vertex(226.9,321.4);
-    vertex(236.4,334.7);
-    vertex(261.8,348);
-    vertex(286,348);
-    vertex(293.7,343);
-    vertex(305.8,343);
-    vertex(329,319.8);
-    vertex(329.5,318.7);
-    vertex(318,325);
+    vertex(318, 313);
+    vertex(311, 325);
+    vertex(301, 334);
+    vertex(300, 315);
+    vertex(292, 329);
+    vertex(285, 336);
+    vertex(275, 316);
+    vertex(273, 336);
+    vertex(263, 328);
+    vertex(255, 315);
+    vertex(254, 332);
+    vertex(246, 326);
+    vertex(236, 315);
+    vertex(241, 331);
+    vertex(227, 321);
+    vertex(236, 335);
+    vertex(262, 348);
+    vertex(286, 348);
+    vertex(294, 343);
+    vertex(306, 343);
+    vertex(329, 320);
+    vertex(330, 319);
+    vertex(318, 325);
   endShape(CLOSE);
-  
   fill(lightGrey);
   beginShape(); //beard highlights
     vertex(223,273);
@@ -681,49 +662,48 @@ void drawBard()
     vertex(337,260);
     vertex(342,273);
     vertex(345,249);
-    vertex(351,252.8);
-    vertex(344.4,203.7);
-    vertex(335.6,196);
-    vertex(303.6,196);
-    vertex(290.4,172.2);
-    vertex(279,163);
-    vertex(270.6,167.7);
-    vertex(257.4,166.3);
-    vertex(245,178);
-    vertex(207.8,234.5);
-    vertex(202,265);
-    vertex(207.8,259.2);
-    vertex(213.8,274.5);
-    vertex(224,257);
+    vertex(351, 253);
+    vertex(344, 204);
+    vertex(336, 196);
+    vertex(304, 196);
+    vertex(290, 172);
+    vertex(279, 163);
+    vertex(271, 168);
+    vertex(257, 166);
+    vertex(245, 178);
+    vertex(208, 235);
+    vertex(202, 265);
+    vertex(208, 259);
+    vertex(214, 275);
+    vertex(224, 257);
   endShape(CLOSE);
   
+  //draw face mask
   fill(maroon);
-  ellipse(305, 189, 53, 56); //face mask
-  
+  ellipse(305, 189, 53, 56); //face mask base
   stroke(124, 61, 60); //dark maroon to shade face mask bevel
   noFill(); //stroke only
   strokeWeight(2); //thicker stroke
   ellipse(306, 192, 41, 41); //face mask bevel
-  
   noStroke(); //turn off stroke from bevels
   fill(bronze);
   beginShape(); //gold face plate
-    vertex(326,186);
-    vertex(311.3,186);
-    vertex(299.4,173.6);
-    vertex(291,176.1);
-    vertex(287.1,184.9);
-    vertex(294.8,194.8);
-    vertex(292.6,206.9);
-    vertex(298,212);
-    vertex(306.4,212.4);
-    vertex(313.5,204.7);
-    vertex(323.5,201.4);
-    vertex(327,195.3);
+    vertex(326, 186);
+    vertex(311, 186);
+    vertex(299, 174);
+    vertex(291, 176);
+    vertex(287, 185);
+    vertex(295, 195);
+    vertex(293, 207);
+    vertex(298, 212);
+    vertex(306, 212);
+    vertex(314, 205);
+    vertex(324, 201);
+    vertex(327, 195);
   endShape(CLOSE);
   
   //draw eyes and mouth
-  fill(blindingYellow); //near-white, glowy yellow
+  fill(lightYellow); //near-white, glowy yellow
   ellipse(302, 204, 9, 11); //mouth
   ellipse(298, 186, 10, 12); //left eye
   ellipse(318, 195, 12, 10); //right eye
@@ -739,25 +719,25 @@ void drawMeep()
   ellipse(109, 113, 43, 40); //head
   ellipse(120, 166, 21, 26); //abdomen
   beginShape(); //neck
-    vertex(128.2,121.6);
-    vertex(121.2,135);
-    vertex(124.8,149);
-    vertex(130,160.9);
-    vertex(109.9,165.5);
-    vertex(112,152.3);
-    vertex(108.9,145);
-    vertex(102,135.6);
-    vertex(90,122.6);
+    vertex(128, 122);
+    vertex(121, 135);
+    vertex(125, 149);
+    vertex(130, 161);
+    vertex(110, 166);
+    vertex(112, 152);
+    vertex(109, 145);
+    vertex(102, 136);
+    vertex(90, 123);
   endShape(CLOSE);
   beginShape(); //feet
-    vertex(110.2,168.7);
-    vertex(114,180.8);
-    vertex(123,192.5);
-    vertex(123,181);
-    vertex(128.5,178);
-    vertex(134.2,184.8);
-    vertex(132.4,169.8);
-    vertex(130,160.9);
+    vertex(110, 169);
+    vertex(114, 181);
+    vertex(123, 193);
+    vertex(123, 181);
+    vertex(129, 178);
+    vertex(134, 185);
+    vertex(132, 170);
+    vertex(130, 161);
   endShape(CLOSE);
   
   //draw eyes and eye stripes
@@ -775,7 +755,7 @@ void drawMeep()
     vertex(109, 125);
     vertex(100, 132);
   endShape(); //still no CLOSE: open shape
-  fill(blindingYellow); //same eye colour as Bard, keep maroon stroke from stripes
+  fill(lightYellow); //same eye colour as Bard, keep using maroon stroke from stripes
   ellipse(106, 120, 9, 13); //left eye
   ellipse(125, 116, 7, 12); //right eye
   
@@ -783,24 +763,24 @@ void drawMeep()
   noStroke(); //remove stroke leftover from drawing eyes
   fill(148, 85, 83, 255/4); //maroon rgb plus alpha value expression: 25% opacity
   beginShape(); //neck shadow
-    vertex(125,127.9);
-    vertex(119.5,133.1);
-    vertex(110,134.7);
-    vertex(97.2,130.3);
-    vertex(102,135.6);
-    vertex(106.4,141.6);
-    vertex(120.3,146.8);
-    vertex(123.1,142.2);
-    vertex(121.2,135);
+    vertex(125, 128);
+    vertex(120, 133);
+    vertex(110, 135);
+    vertex(97, 130);
+    vertex(102, 136);
+    vertex(107, 142);
+    vertex(120, 147);
+    vertex(123, 142);
+    vertex(121, 135);
   endShape(CLOSE);
   beginShape(); //feet shadow
-    vertex(114,180.8);
-    vertex(120.3,184.6);
-    vertex(126,175.6);
-    vertex(130,176.7);
-    vertex(134.2,184.8);
-    vertex(128.5,178);
-    vertex(123,181);
-    vertex(123,193);
+    vertex(114, 181);
+    vertex(120, 185);
+    vertex(126, 176);
+    vertex(130, 177);
+    vertex(134, 185);
+    vertex(128, 178);
+    vertex(123, 181);
+    vertex(123, 193);
   endShape(CLOSE);
 }
