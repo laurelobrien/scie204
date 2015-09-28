@@ -46,6 +46,60 @@ void draw()
 //draw Bard, the Wandering Tinkerer
 void drawBard()
 {
+  //draw ponytail
+  fill(darkGrey);
+  beginShape(); //ponytail hair
+    vertex(314,149);
+    vertex(310,112);
+    vertex(299,93);
+    vertex(283.5,87);
+    vertex(271,88);
+    vertex(257,99);
+    vertex(241.9,123.2);
+    vertex(235.3,138.6);
+    vertex(244.1,139.7);
+    vertex(267,121.2);
+    vertex(266,143);
+  endShape(CLOSE);
+  
+  fill(darkPurple);
+  beginShape(); //back hair wrap
+    vertex(266,92);
+    vertex(257,98);
+    vertex(255,105);
+    vertex(259,117);
+    vertex(264.7,123);
+    vertex(267,121.2);
+    vertex(262,112);
+    vertex(260,103);
+  endShape(CLOSE);
+  
+  fill(midPurple);
+  beginShape(); //middle hair wrap
+    vertex(267,110);
+    vertex(264,98);
+    vertex(271,88);
+    vertex(283,86);
+    vertex(299,93);
+    vertex(284,88);
+    vertex(272,93);
+    vertex(269,99);
+    vertex(271,108);
+  endShape(CLOSE);
+  
+  fill(lightPurple);
+  beginShape(); //front hair wrap
+    vertex(311,114);
+    vertex(302,104);
+    vertex(280,104);
+    vertex(270,114);
+    vertex(267,110);
+    vertex(275,96);
+    vertex(290,91);
+    vertex(299,93);
+    vertex(308,106);
+  endShape(CLOSE);
+  
   //draw right arm
   fill(darkGreen);
   beginShape(); //right sleeve
@@ -406,15 +460,6 @@ void drawBard()
     vertex(195.7,333.5);
     vertex(145,324.7);
   endShape(CLOSE);
-  beginShape(); //left bottom purple band
-    vertex(124.5,412.8);
-    vertex(120.8,406.9);
-    vertex(115.5,390.8);
-    vertex(127.3,380.9);
-    vertex(173,375.4);
-    vertex(201,383.1);
-    vertex(201,405.1);
-  endShape(CLOSE);
   
   fill(maroon);
   beginShape(); //left red band
@@ -442,6 +487,17 @@ void drawBard()
   
   fill(gold);
   ellipse(104, 438, 87, 86); //globe of staff
+  
+  fill(lightPurple);
+  beginShape(); //left bottom purple band, overlapping globe
+    vertex(124.5,412.8);
+    vertex(120.8,406.9);
+    vertex(115.5,390.8);
+    vertex(127.3,380.9);
+    vertex(173,375.4);
+    vertex(201,383.1);
+    vertex(201,405.1);
+  endShape(CLOSE);
   
   fill(aquaMarine);
   ellipse(98, 465, 26, 24); //draw jewel on front of globe
@@ -556,4 +612,117 @@ void drawBard()
   ellipse(287, 462, 14, 9); //second knot
   ellipse(316, 441, 14, 10); //third knot
   ellipse(333, 408, 12, 8); //fourth knot
+  
+  fill(midGrey);
+  beginShape(); //beard midtones
+    vertex(208,239.9);
+    vertex(208,266.4);
+    vertex(209,296.1);
+    vertex(227,321.4);
+    vertex(249.7,337.4);
+    vertex(300.5,336.5);
+    vertex(329.5,318.7);
+    vertex(335.6,306.3);
+    vertex(343.3,317.2);
+    vertex(349.9,279.6);
+    vertex(346.8,237);
+  endShape(CLOSE);
+  
+  fill(darkGrey);
+  beginShape(); //beard shadows
+    vertex(318,313);
+    vertex(310.8,325);
+    vertex(300.9,334);
+    vertex(299.9,315);
+    vertex(292,329);
+    vertex(285,336);
+    vertex(275,316);
+    vertex(273,336);
+    vertex(263,328);
+    vertex(255,315);
+    vertex(254,332);
+    vertex(246,326);
+    vertex(236,315);
+    vertex(241,331);
+    vertex(226.9,321.4);
+    vertex(236.4,334.7);
+    vertex(261.8,348);
+    vertex(286,348);
+    vertex(293.7,343);
+    vertex(305.8,343);
+    vertex(329,319.8);
+    vertex(329.5,318.7);
+    vertex(318,325);
+  endShape(CLOSE);
+  
+  fill(lightGrey);
+  beginShape(); //beard highlights
+    vertex(223,273);
+    vertex(226,288);
+    vertex(245,258);
+    vertex(242,275);
+    vertex(244,299);
+    vertex(261,269);
+    vertex(267,286);
+    vertex(279,306);
+    vertex(282,272);
+    vertex(287,258);
+    vertex(293,285);
+    vertex(299,273);
+    vertex(300,305);
+    vertex(311,287);
+    vertex(314,268);
+    vertex(318,290);
+    vertex(325,269);
+    vertex(333,299);
+    vertex(338,278);
+    vertex(337,260);
+    vertex(342,273);
+    vertex(345,249);
+    vertex(351,252.8);
+    vertex(344.4,203.7);
+    vertex(335.6,196);
+    vertex(303.6,196);
+    vertex(290.4,172.2);
+    vertex(279,163);
+    vertex(270.6,167.7);
+    vertex(257.4,166.3);
+    vertex(245,178);
+    vertex(207.8,234.5);
+    vertex(202,265);
+    vertex(207.8,259.2);
+    vertex(213.8,274.5);
+    vertex(224,257);
+  endShape(CLOSE);
+  
+  fill(maroon);
+  ellipse(305, 189, 53, 56); //face mask
+  
+  stroke(124, 61, 60); //dark maroon to shade face mask bevel
+  noFill(); //stroke only
+  strokeWeight(2); //thicker stroke
+  ellipse(306, 192, 41, 41); //face mask bevel
+  
+  noStroke(); //turn off stroke from bevels
+  fill(bronze);
+  beginShape(); //gold face plate
+    vertex(326,186);
+    vertex(311.3,186);
+    vertex(299.4,173.6);
+    vertex(291,176.1);
+    vertex(287.1,184.9);
+    vertex(294.8,194.8);
+    vertex(292.6,206.9);
+    vertex(298,212);
+    vertex(306.4,212.4);
+    vertex(313.5,204.7);
+    vertex(323.5,201.4);
+    vertex(327,195.3);
+  endShape(CLOSE);
+  
+  //draw eyes and mouth
+  fill(244, 227, 195); //near-white, glowy yellow
+  ellipse(302, 204, 9, 11); //mouth
+  ellipse(298, 186, 10, 12); //left eye
+  ellipse(318, 195, 12, 10); //right eye
 }
