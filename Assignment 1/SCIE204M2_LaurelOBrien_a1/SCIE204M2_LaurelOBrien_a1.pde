@@ -246,4 +246,61 @@ void drawBard()
     vertex(298, 520);
     vertex(295, 517);
   endShape(CLOSE);
+  
+  fill(midGreen);
+  beginShape(); //green belly
+    vertex(331, 313);
+    vertex(337, 331);
+    vertex(332, 383);
+    vertex(160, 358);
+    vertex(194, 242);
+  endShape(CLOSE);
+  
+  fill(midGrey);
+  beginShape(); //hair
+    vertex(308, 139);
+    vertex(307, 132);
+    vertex(293, 130);
+    vertex(268, 128);
+    vertex(235, 139);
+    vertex(203, 158);
+    vertex(196, 174);
+    vertex(183, 185);
+    vertex(195, 190);
+    vertex(185, 212);
+    vertex(344, 211);
+    vertex(351, 207);
+    vertex(349, 182);
+    vertex(342, 176);
+    vertex(341, 156);
+  endShape(CLOSE);
+  
+  fill(lightGrey);
+  beginShape(); //left ear
+    vertex(305, 163);
+    vertex(304, 143);
+    vertex(264, 105);
+    vertex(279, 150);
+    vertex(293, 170);
+  endShape(CLOSE);
+  beginShape(); //right ear
+    vertex(325, 172);
+    vertex(331, 159);
+    vertex(356, 153);
+    vertex(347, 174);
+    vertex(329, 186);
+  endShape(CLOSE);
+  
+  fill(maroon);
+  ellipse(320, 138, 22, 22); //mask antenna
+  
+  fill(darkBrown);
+  beginShape(); //mask antenna wrapping
+    vertex(313.5, 147.4);
+    vertex(306.9, 170.5);
+    vertex(319.1, 174.9);
+    vertex(326.8, 147.4);
+    vertex(320.2, 143);
+    vertex(313.5, 147.4);
+  endShape(CLOSE);
 }
