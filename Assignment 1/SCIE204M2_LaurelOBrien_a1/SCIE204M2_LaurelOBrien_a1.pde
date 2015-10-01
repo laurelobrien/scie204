@@ -813,11 +813,14 @@ void drawGlow()
   
   //if growVar reaches 42px or higher, wipe the glow with a large grey ellipse
   //and reset growVar to 0 so the animation starts over
-  if (growVar >= 42) {
+  if (growVar >= 42)
+  {
     fill(#f3f3f3); //light grey, same as setup() background()
     ellipse(65, 442, 100, 100); //ellipse larger than glow
     growVar = 0; //reset (re-assign) growVar as 0
-  } else {
+  } 
+  else 
+  {
     growVar += 3; //increment growVar by 3 if it isn't 42 yet
   }
 }
