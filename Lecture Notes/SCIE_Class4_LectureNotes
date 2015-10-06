@@ -1,0 +1,172 @@
+#SCIE 204 class 4, october 5th 2015
+
+##100x100 tile details
+Clean up your code and comments for final submission
+make sure a rect() is used instead of background()
+
+##IF + CONDITIONS review
+###semicolons
+You cannot put a semicolon as part of an if statement even though the current reflex is to do so, like ellipse();
+For example:
+  if (condition);
+  {
+    //perform actions
+  }
+This won't work as intended because the semicolon indicates to Processing that the line ends there. The condition becomes void which means everything inside the if statement will run because the conditions that allow access to that statement don't exist
+
+###operators
+**=** and **==** are *different*. = assigns value, == compares the equality of 2 things. using a = ("assignment operator") in an if statement will make the condition "can I assign this value to this variable?" which will logically always be true or false, making such an if statement useless.
+For example
+  if(numGoats = 14) 
+  {
+    //perform actions
+  }
+those actions will always run because you can always assign an integer to numGoats.
+  if(numGoats == 14)
+  {
+    //perform actions
+  }
+using a equal-to operator, ==, instead of an assignment operator, =, means the actions will only run IF numGoats stores a value of 14, as intended.
+
+##BOOLEANS
+A good way to name booleans in general is prepending it with "is" or "has", whichever makes grammatical sense.
+This isn't hard-coded into Processing, it's just good practice to help you keep your booleans and their meaning straight.
+For example, declare and initialize some booleans
+  boolean hasCoffee = true;
+  boolean isTired = false;
+
+##IF, ELSE, ELSE IF
+An if statement only needs a single starting if()
+Else and else if provide alternatives and more decision-making options but they are optional
+You can have as many else ifs as if you want, but only one else, and an else ends the if statement
+Else does not require a condition, it accepts any conditions that have not been satisfied
+  if (hasCoffee == true) 
+  {
+    //actions
+  }
+  else if (isTired == true) 
+  {
+    //different actions
+  }
+  else 
+  {
+    //final alternative if NO previous conditions were fulfilled
+  }
+
+##DISCREET TIME
+We live in a continuous, analog world, but computers are discreet
+IF you throw a pencil, it exists in every possible space between its launch and its landing at some point in time. It is persistent and continuous to an infintesimal, almost infinite fraction of space and time
+Computers parse information a specific interval - in Processing this would be the refresh rate or how often draw() runs.
+With a very specific condition, there is a risk it won't be fulfilled because it passed while the computer or program was inbetween "snapshots"
+  if (mouseX == 100) 
+  {
+    ellipse(mouseX, mouseY, 10, 10); //draw a 10x10 ellipse at mouse position
+  }
+It is possible to move your mouse from 0 to 200 along the X axis and never see the ellipse if you move it too quickly. The computer has indicated it knows you moved past 100 since your mouse was at 0 and is now at 200, but it was not recording the mouseX or drawing at the exact moment in time your mouse's x position was equal to 100.
+This can be adjusted by using ranges/greater than/less than instead of exact values (or changing frameRate in Processing specifically)
+
+##AND / OR
+Logical ands (&&) / ors (||) compare trueness and/or falseness
+Multiple and/ors can be used in a single condition, often acting as a condensed if/elseif/else statement
+  if (sizeMuscles >= 100 || isBrave == true || isKidWerewolf == true && isFullMoon == true) 
+  {
+    //cops are scared and run
+  }
+That is 3 conditions that could be met for the if statement to evaluate as true and run the actions. 
+The final && comparison means that both conditions, isKidWerewolf == true and isFullMoon == true, must be met for that third condition to be true. && pulls together conditions like parentheses, both conditions on either side of it become one condition and both must be true for the entire thing to be true.
+The same outcome could be achieved with:
+  if (sizeMuscles >= 100) 
+  {
+    //cops are scared and run
+  }
+  else if (isBrave == true) 
+  {
+    //cops are scared and run
+  }
+  else if (isKidWerewolf == true && isFullMoon == true) 
+  {
+    //cops are scared and run
+  }
+but that is bloated and redundant in comparison, as the same outcome is repeated 3 times. you would use multiple if/elses if the outcomes were different, such as
+  if (sizeMusces >= 100)
+  {
+   //cops are scared
+  }
+  else if (isKidWerewolf == true && isFullMoon == true)
+  {
+    //cops run
+  }
+
+##TIME AND FRAMES
+Processing's "frame rate", or how often it runs continuous functions such as draw(), is very close to your monitor's refresh rate
+A refresh rate of light images (aka computer screens) lower than 60 per second starts showing flicker: a video slower than 60fps will not necessarily flicker as long as the refresh rate of the monitor *showing* the video is 60 or higher.
+Frame rate can be controlled in processing:
+void setup() 
+{
+  frameRate(4); //4 frames per second
+}
+
+frameCount is also a special word that stores the current frame, which Processing counts for you
+  if (frameCount >= 100) 
+  {
+    //do stuff on and after the 100th frame
+  }
+You can also create your own variable to count frames at a specific time in the program:
+  int frameMemory = 0;
+  void draw() 
+  {
+    if (frameMemory == 100) //accessing what frameMemory was most recently assigned to
+    {
+      ellipse(50, 50, 2, 6); //draw a 2x6 ellipse
+    }
+
+    frameMemory ++; //frame has ended, add it to frameMemory count
+  }
+
+If you used frameCount instead of your own custom frameMemory, you would be accessing current frameCount and not what it ended as last refresh. You can also customize *when* in your program a new frame is recorded; things can happen after you record your custom frameMemory that will not be affected by a condition that may affect things before it and vice versa:
+  int frameMemory = 0;
+  void draw() 
+  {
+    if (frameMemory == 100) //accessing what frameMemory was most recently assigned to
+    {
+      ellipse(50, 50, 4, 6); //draw a 4x6 ellipse
+    }
+
+    frameMemory ++; //frame has ended, add it to frameMemory count
+
+    if (frameMemory == 100) 
+    {
+      rect(50, 50, 2, 90); //draw a 2x90 rectangle
+    }
+  }
+
+The count of frames goes up by 1 every frame, but because it's placed between 2 if statements, the frame count may be 99 for the first one and 100 for the second one. the drawing of a rectangle will always be ahead of the drawing of ellipse by 1 frame. This seems convoluted but it's useful to define your own variables if you need control over the order/time that frames are counted
+
+Frame counts of any variety are also useful for constant iterations:
+  void draw() 
+  {
+    ellipse(50, 50, frameCount, frameCount); //draw a circle that grows as the program runs
+  }
+Which is a lot faster than:
+  int diameter = 0; //declare & initialize diameter
+  void draw() 
+  {
+    ellipse(50, 50, diameter, diameter);
+
+    diameter ++; //increment diameter by 1
+  }
+*As long as it suits your purposes*. You cannot change Processing's official frameCount variable like you can a custom one, such as resetting with modulus.
+
+##FOR LOOPS
+For loops iterate starting at one value, while a statement is true, and stops when that statement is no longer true.
+  for (i = 0; i < 42; i ++) 
+  {
+    ellipse(10, 10, 5, 5); //draw a 5x5 ellipse at (10, 10)
+  }
+That ellipse will be drawn 42 times: the iteration condition is i < 42 but you start counting i at 0, which is common in computer science. Once i is no longer less than 42, the iteration argument (i ++) and the commands inside of the for loop stop executing and the loop is exited
+You can also use the variable being acted on in the for loop's arguments within its commands:
+  for (i = 0; i < 42; i ++) 
+  {
+    ellipse(10, 10, i, i); //draw a 5x5 ellipse at (10, 10)
+  }
+the ellipse's diameters will grow by the same amount that i grows and will stop when i stops.
