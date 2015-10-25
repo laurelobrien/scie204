@@ -60,7 +60,8 @@ void draw()
 }
 
 
-
+//draw a 100x100 tile from the top left corner
+//of Bard's globe of light
 void drawTile (int xxx, int yyy) 
 { 
   pushMatrix(); //isolate transformations in mem
@@ -71,7 +72,7 @@ void drawTile (int xxx, int yyy)
   //drawing
   ellipseMode(RADIUS); //take ellipse size arguments as radius measurements
   
-  fill(maroon);
+  fill(#DEACAC); //light salmon
   rect(0, 0, 100, 100);
   
   fill(aquaMarine);
@@ -115,32 +116,38 @@ void drawTile (int xxx, int yyy)
 }
 
 
+
+//call drawTile() with (x, y) coordinates progressively calculated to
+//create a seamless grid, with enough repetitions to completely cover
+//the canvas. rotate that grid of tiles around its center at the mouse's position.
 void drawTileGridWithRotation()
 {
-  pushMatrix(); //isolate mem
+  pushMatrix(); //isolate memory for transformations
   
   //TRANSFORMATIONS HAPPEN IN REVERSE
   translate(mouseX, mouseY); //move the grid's center to the mouse x,y position
   rotate(radians(steadyRotateAng)); //rotate grid based on mouse's y position
-  translate(-792, -792); //move the grid's center to the origin
+  translate(-842, -842); //move the grid's center to the origin
+  //END TRANSFORMATIONS
   
   //vertical strip
-  for (int j = 0; j < 16; j ++)
+  for (int j = 0; j < 17; j ++) //for 16 columns of tiles:
   {
     //horizontal strip
-    for (int i = 0; i < 16; i ++) 
+    for (int i = 0; i < 17; i ++)  //draw 16 rows of tiles
     {
-      drawTile(i * 99, j * 99);
+      drawTile(i * 99, j * 99); //call drawTile() in a location determined by iteration count
     } 
   }
   
   popMatrix(); //done isolating memory
   
-  steadyRotateAng ++;
+  steadyRotateAng ++; //increment angle of rotation by 1
 }
 
 
-//draw Bard, the Wandering Tinkerer
+
+//draw our hero Bard, the Wandering Tinkerer
 void drawBard()
 { 
   //draw ponytail
