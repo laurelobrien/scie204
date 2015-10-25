@@ -37,7 +37,7 @@ color blueGlow = color(161, 229, 219, 40); //pale blue
 //initialize and declare variable for animating the drawGlow() effect
 int growVar = 0;
 
-int steadyRotateAng = 0;
+float steadyRotateAng = 360; //angle that drawGlobeTileGrid() is rotated to
 
 
 
@@ -53,9 +53,10 @@ void setup()
 void draw()
 {
   background(#00FF00); //lime green background: erase last frame
+  
   //drawGlow(); //draw pulsing glow effect on Bard's staff
-  drawTileGridWithRotation(); //draw 100x100 tile
-  drawBard(); //draw bard
+  drawGlobeTileGrid(); //draw 100x100 tile
+  rotateBard(); //draw bard
   drawMeep(); //draw meep
 }
 
@@ -72,7 +73,7 @@ void drawTile (int xxx, int yyy)
   //drawing
   ellipseMode(RADIUS); //take ellipse size arguments as radius measurements
   
-  fill(#DEACAC); //light salmon
+  fill(#2C5174); //navy blue
   rect(0, 0, 100, 100);
   
   fill(aquaMarine);
@@ -119,8 +120,9 @@ void drawTile (int xxx, int yyy)
 
 //call drawTile() with (x, y) coordinates progressively calculated to
 //create a seamless grid, with enough repetitions to completely cover
-//the canvas. rotate that grid of tiles around its center at the mouse's position.
-void drawTileGridWithRotation()
+//the canvas. slowly rotate that grid of tiles counter-clockwise
+//around its center at the mouse's position.
+void drawGlobeTileGrid()
 {
   pushMatrix(); //isolate memory for transformations
   
@@ -142,14 +144,31 @@ void drawTileGridWithRotation()
   
   popMatrix(); //done isolating memory
   
-  steadyRotateAng ++; //increment angle of rotation by 1
+  steadyRotateAng -= 0.5; //decrement angle of rotation by 1
+}
+
+
+
+void rotateBard() 
+{
+  pushMatrix(); //isolate memory for transformations
+  
+  //TRANSFORMATIONS HAPPEN IN REVERSE
+  translate(210, 283); //return Bard to his original position
+  rotate(radians(mouseX));//rotate Bard to an angle based on mouse X position
+  translate(-210, -283); //move Bard to the canvas origin
+  //END TRANSFORMATIONS
+  
+  drawBard();
+  
+  popMatrix(); //end memory isolation
 }
 
 
 
 //draw our hero Bard, the Wandering Tinkerer
 void drawBard()
-{ 
+{
   //draw ponytail
   fill(darkGrey);
   beginShape(); //ponytail hair
@@ -165,6 +184,7 @@ void drawBard()
     vertex(267,121.2);
     vertex(266,143);
   endShape(CLOSE);
+
   
   fill(darkPurple);
   beginShape(); //back hair wrap
