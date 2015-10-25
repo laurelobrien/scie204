@@ -34,8 +34,7 @@ color deepPurple = color(48, 45, 53);
 color shine = color(255); //white
 color blueGlow = color(161, 229, 219, 40); //pale blue
 
-//initialize and declare variable for animating the drawGlow() effect
-int growVar = 0;
+int growVar = 0; //store size of pulsing halo effects in drawGlow()
 
 float steadyRotateAng = 360; //angle that drawGlobeTileGrid() is rotated to
 
@@ -44,31 +43,39 @@ float steadyRotateAng = 360; //angle that drawGlobeTileGrid() is rotated to
 void setup()
 {
   size(480, 640); //set canvas size, portrait orientation
-  noStroke(); //default starts as stroke-less shapes 
+  noStroke(); //default starts as strokeless shapes 
 }
 
 
 
-//call functions that draw Bard and his companion Meep
+//call functions that draw Bard and his companion Meep with 
+//various transformations and mouse interactions
 void draw()
 {
-  background(#00FF00); //lime green background: erase last frame
+  background(#00FF00); //lime green background: should never be visible
   
   //drawGlow(); //draw pulsing glow effect on Bard's staff
-  drawGlobeTileGrid(); //draw 100x100 tile
-  rotateBard(); //draw bard
-  drawMeep(); //draw meep
+  drawGlobeTileGrid(); //draw tiled background of Bard's globes rotating on mouse position
+  
+  if (mouseY <= height/2) //if mouse is in top half of canvas:
+  {
+    rotateBard(); //draw Bard rotated to an angle based on mouse x position
+  }
+  
+  drawMeep(); //draw Bard's companion Meep
 }
 
 
-//draw a 100x100 tile from the top left corner
-//of Bard's globe of light
+//draw a 100x100 tile from its top-left corner
+//depiciting Bard's globe of light. it accepts 2 int arguments to determine
+//x and y coordinate location
 void drawTile (int xxx, int yyy) 
 { 
-  pushMatrix(); //isolate transformations in mem
+  pushMatrix(); //isolate transformations in memory
   
   //TRANSFORMATIONS HAPPEN IN REVERSE
   translate(xxx, yyy); //move the tile by this amount
+  //END TRANSFORMATIONS
   
   //drawing
   ellipseMode(RADIUS); //take ellipse size arguments as radius measurements
@@ -113,7 +120,7 @@ void drawTile (int xxx, int yyy)
   
   ellipseMode(DIAMETER); //reset ellipse size arguments to diamater measurements
   
-  popMatrix(); //end transformations
+  popMatrix(); //end memory isolation
 }
 
 
@@ -148,7 +155,8 @@ void drawGlobeTileGrid()
 }
 
 
-
+//rotate Bard around his approximate center according to
+//mouse's horizontal position
 void rotateBard() 
 {
   pushMatrix(); //isolate memory for transformations
@@ -159,7 +167,7 @@ void rotateBard()
   translate(-210, -283); //move Bard to the canvas origin
   //END TRANSFORMATIONS
   
-  drawBard();
+  drawBard(); //call function that draws Bard
   
   popMatrix(); //end memory isolation
 }
