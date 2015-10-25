@@ -110,7 +110,8 @@ void drawTile (int xxx, int yyy)
   ellipse(67, 28, 3, 1); //specular highlight on upper gem behind globe
   
   ellipseMode(DIAMETER); //reset ellipse size arguments to diamater measurements
-  popMatrix();
+  
+  popMatrix(); //end transformations
 }
 
 
@@ -121,13 +122,13 @@ void drawTileGridWithRotation()
   //TRANSFORMATIONS HAPPEN IN REVERSE
   translate(mouseX, mouseY); //move the grid's center to the mouse x,y position
   rotate(radians(steadyRotateAng)); //rotate grid based on mouse's y position
-  translate(-187, -132); //move the grid's center to the origin
+  translate(-792, -792); //move the grid's center to the origin
   
   //vertical strip
-  for (int j = 0; j < 9; j ++)
+  for (int j = 0; j < 16; j ++)
   {
     //horizontal strip
-    for (int i = 0; i < 9; i ++) 
+    for (int i = 0; i < 16; i ++) 
     {
       drawTile(i * 99, j * 99);
     } 
