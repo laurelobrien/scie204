@@ -1,0 +1,76 @@
+<svg id="bard" xmlns="http://www.w3.org/2000/svg" viewBox="-71.7 72.4 630 630">
+  <style>
+    .st0{opacity:0.2;fill:#564963;} .st1{fill:#302D35;} .st2{fill:#A8A5A5;} .st3{fill:#473F51;} .st4{fill:#564963;} .st5{fill:#3D3844;} .st6{fill:#503F37;} .st7{fill:#5D6057;} .st8{fill:#A67C52;} .st9{fill:#945553;} .st10{fill:#BCBBBB;} .st11{fill:#56473D;} .st12{fill:#685345;} .st13{fill:#775E49;} .st14{fill:#6D7066;} .st15{fill:#D8D6D6;} .st16{fill:#83877B;} .st17{fill:#7DD8CD;} .st18{fill:#E2BF60;} .st19{fill:#5E546B;} .st20{fill:#BEBCBC;} .st21{fill:none;stroke:#773C3C;stroke-width:2;stroke-miterlimit:10;} .st22{fill:#D1AA4B;} .st23{fill:#A59F9F;} .st24{fill:#F4E3C3;}
+  </style>
+  <path class="st0" d="M102 560.8l98.4 144.5 358-3-331-129-15.4 1.3 44 34.7s11.5 40-93.6-18.7c-48.8-27.2-48-28.7-48-28.7l-12.4-1.2z"/>
+  <path id="leftFoot" class="st1" d="M103.6 549.6l-1.6 11.2 3 2.3 9.4-1v-14.4z"/>
+  <path id="ponyTail" class="st2" d="M207.4 146l-4-37-11-19-15.5-6-12.6 1-14 11-15.2 24.3-6.5 15.4 8.8 1 23-18.4-1 21.8z"/>
+  <path id="midHairClip" class="st3" d="M160.4 107l-3-12 7-10 12-2 16 7-15-5-12 5-3 6 2 9z"/>
+  <path id="lightHairClip" class="st4" d="M203.5 110l-8-9h-22l-10 10-3-4 8-14 15-5 9 2 9 13z"/>
+  <path id="darkHairClip" class="st5" d="M159.4 89l-9 6-2 7 4 12 5.7 6 2.4-1.7-5-9.2-2-9z"/>
+  <path id="leftPants" class="st6" d="M53.8 460.6l-1 21 18.7 28.8 25.3 4.2 36.4-16.5 5.5-15.4 2.7-51.5z"/>
+  <path id="rightFoot" class="st1" d="M200 551l3.6 11 14.4-2.3-1-18.6z"/>
+  <path id="rightAnkle" class="st5" d="M198 532.2l2 18.7 12-5.6 5.4 2.2 1.7-19.8z"/>
+  <path id="rightCalf" class="st3" d="M191.4 516.8v12l6.4 3.4 21-1 4.6-9-8-13z"/>
+  <path id="rightSleeve" class="st7" d="M240.8 264.6l18.3 19.8 7.4 14.3v7.7l14 27.5-1 7.7 12.2 25.3-71.5 29.7 1-131z"/>
+  <path id="rightSuedeBand" class="st8" d="M302.8 372.5l6.7 40.7-58.5 22-14.4-46.2 38.5-21z"/>
+  <path id="rightPurpleTop" class="st4" d="M296 359.3l-22 2.2-41.8 23 1.2 17.7 23-16.5 24.2-10 22.2-3.2z"/>
+  <path id="rightPurpleBand" class="st4" d="M309.4 412.4l1 13.8-4.3 5h-13l-29 6.7-13.2 4-4.2-6.6 16.5-12.2 25.5-8.8z"/>
+  <path id="rightRedBand" class="st9" d="M304 379.4l5.4 6.5 2.2 15.5-3.4 4.6h-13l-35.4 11.7-16.6 11-6.6-22L261 391z"/>
+  <path id="rightGlove" class="st10" d="M302.8 426l9.8 22.3-1 7.8-40.8-3-13.2-13.3 10-6.6 22-7z"/>
+  <path id="rightPinky" class="st11" d="M270.8 453l-8.6 3.8-3.7 11.8 13.4 2 5.4-11z"/>
+  <path id="rightIndex" class="st12" d="M311.6 456.2l-6.6-5.5-9 1-25.2 21-3.3 8.8 8.7 11 16.7-2 13-10z"/>
+  <path id="rightThumb" class="st13" d="M278.5 440.8L293 443l3 8.8-4.2 18.7-6.7 13.2-11-1-2-12.2-1.2-17.6z"/>
+  <path id="rightPants" class="st6" d="M252 488.2l9-33-3.4-20-17.6-43 5.5-11-9-6.5-14 1-63.3 80.5 8.3 27.5 5 2.2v5.5l16 5.5 28.4 4.4 18.5-6.6z"/>
+  <path id="rightKnee" class="st4" d="M188.4 497v17.6l3 2.2 24.2-2.2 7.8 7.7 11-6.6 1.2-21-17.8-5.4-25.4 2.2z"/>
+  <path id="greenBelly" class="st14" d="M224.6 309.7l5.5 18.7-4.4 51.8L53.8 355l33-115.8z"/>
+  <path id="maneHair" class="st10" d="M201.4 135.7l-1.2-6.6-14.2-2-24.2-2.3-33 11-32 19.8L89 171l-13 11 12 5.5-10 22 159.8-1 6.6-4.5-2.3-25.4-6.4-5.5-1-19.7z"/>
+  <path id="leftBunny" class="st15" d="M198.6 160l-1.2-20-40-38 15 45 14 20z"/>
+  <path id="rightBunny" class="st15" d="M218.4 169l6-13 25-6-9 21-18 12z"/>
+  <circle id="maskDongle" class="st9" cx="213.6" cy="135.7" r="11"/>
+  <path id="maskWrapping" class="st6" d="M207 144.5l-6.8 23 12.3 4.5 7.6-27.5-6.4-4.4-6.7 4.5"/>
+  <path id="purpleApron" class="st3" d="M99 350.5l122.2 14.3 11-11 5.6 1L229 378l-1 18.7-12.2 35.3-28.7 25.3-21 2.2-27.3-12-57.3-52z"/>
+  <path id="redApron" class="st9" d="M105.6 297.6l15.4 88 50.6 30 47.5-28.8-5.4-30.8 1-33z"/>
+  <path id="leftSleeve" class="st16" d="M65.4 237l-15 26.5-3.2 8.8-13.2 11L19.7 323 99.2 336 96.8 313l-9.4-27 6-26 29.8-46-18.7-16.6L73.7 214z"/>
+  <path id="shoulderPad" class="st9" d="M121.2 203.5l-6-11.7-24 4-16.8 10.4-9 21v9.8l16-24.2 12 1 6.7-12 2.3 11 12 4.4z"/>
+  <path id="beardWrapping" class="st6" d="M156.2 381.3l7.8 6.6 7.6-5.6 7.8-39-10-4-14.3 4z"/>
+  <path id="tipOfBeard" class="st15" d="M156.2 381.6l-8.7 7.6-4.4 9.8 7.8-2.7L155 420h6.8l12-18.5 2.3-12.3-4.4-6.7z"/>
+  <path id="leftSuedeBand" class="st8" d="M11.7 341.7l-13 44 11 14.3 44-17.6 47.5 8.8 4-37.4-13.8-23.2-47-12.3-19.8 8z"/>
+  <path id="leftPurpleTop" class="st4" d="M11.7 341.7l4.6-15.5 3.3-3.3L44 315l43.4 8.8 17 15.5.7 14.3-16-23.2-50.6-8.8z"/>
+  <path id="leftRedBand" class="st9" d="M1.4 356v13.2l-2.7 16.5 6.6-4.4 3.4-5.5 19.8-6.6 50.7-1 23 12-1 11 6.6-6.6 2.2-15.4-3.3-11-15.4-12L45 336l-29.8 10z"/>
+  <ellipse id="endOrb" class="st17" cx="-41.4" cy="438.6" rx="11.6" ry="14.3"/>
+  <ellipse id="topOrb" class="st17" cx="-5.6" cy="395.1" rx="13.2" ry="11.6"/>
+  <ellipse id="goldOrb" class="st18" cx="-2.9" cy="435.3" rx="43.5" ry="43"/>
+  <ellipse id="bigOrb" class="st17" cx="-8.9" cy="461.7" rx="13.2" ry="12.1"/>
+  <path id="leftPurpleBand" class="st4" d="M18 410l-3.8-6L9 388l11.7-10 45.7-5.5 28 7.7v22z"/>
+  <path id="leftThumb" class="st13" d="M90.2 397.8l-8.8 1.3 1 16 22-5z"/>
+  <path id="greenHandle" class="st16" d="M59.4 460.6l38.5-4.4 17.4-6 6-7 2-35-11.2-3.8-71.6 12.2z"/>
+  <path id="leftGlove" class="st10" d="M90.2 397.8l-10-5.5-39.6 4.4-21 8.8-2 21 37.3 2.2L82.4 411l3-10z"/>
+  <path id="leftPinky" class="st12" d="M17.5 426.5l-2.2 18.7 14.3 12 12 2.3-15.3-33-4.4-2.2z"/>
+  <path id="leftBird" class="st13" d="M26 426.5l4.6 26.4L46 469.3l13 4.4 7.4-3.3v-10l-12.6-13-1.6-18.8-14-5.5z"/>
+  <path id="leftIndex" class="st13" d="M79 413.3l-7.7-3.4-13 5.5-3.4 13.2 8.7 17.6 11 12 11.6 9 6-4.5v-12l-9-20z"/>
+  <path id="leftKnee" class="st4" d="M79.2 511.3l1 15.4L93 529l28-12.2 4.4-15.4z"/>
+  <path id="leftCalf" class="st3" d="M88 527.8l9 10 13-1.2 12.5-7-1.5-12.8z"/>
+  <path id="leftAnkle" class="st5" d="M97 537.7l1.6 11.6 3.7 3 12.7-1 4.7-5.3.7-15.5z"/>
+  <path id="goldHandle" class="st18" d="M132 411l-13.6-4.5-8.4 11.2 1 16.5 7.8 11 14.4-6.6z"/>
+  <path id="lightHandle" class="st5" d="M148.6 413.3l2.2 22-20 1-6.5-7.6-1-14.3 8.7-3.3z"/>
+  <path id="darkHandle" class="st1" d="M219 400l-19 4.4-24 3.3-27.8 5.6-6.8 6.6v7.6l9.4 7.7 20.8-8.8 9-7.7 27.4-4.4z"/>
+  <path id="dongleTwo" class="st19" d="M173 473l8.6-14.7L190 473z"/>
+  <path id="dongleThree" class="st19" d="M204 453l8.5-14.7L221 453z"/>
+  <path id="dongleFour" class="st19" d="M220.4 417l7-12 7 12z"/>
+  <path id="dongleOne" class="st19" d="M133.4 462l8-14.7 8 14.8z"/>
+  <ellipse id="TasselTwo" class="st4" cx="180" cy="459.5" rx="7.2" ry="4.4"/>
+  <ellipse id="tasselThree" class="st4" cx="209.6" cy="438" rx="7.2" ry="5"/>
+  <ellipse id="tasselFour" class="st4" cx="226.4" cy="405" rx="6.1" ry="3.9"/>
+  <ellipse id="tasselOne" class="st4" cx="140.9" cy="447.9" rx="6.6" ry="5"/>
+  <path id="midBeard" class="st20" d="M101.4 237v26.5l1 29.7 18 25.3 22.7 16 51-1 29-17.7 6-12.4 7.6 11 6.6-37.7-3-42.6z"/>
+  <path id="darkBeard" class="st2" d="M211.4 310l-7.3 12-9.8 9-1-19-7.8 14-7 7-10-20-2 20-10-8-8-13-1 17-8-6-10-11 5 16-14-9.5 9.4 13.3L155 345h24.4l7.7-5h12l23.4-23 .5-1.2-11.6 6.3z"/>
+  <path id="mainBeard" class="st15" d="M116.4 270l3 15 19-30-3 17 2 24 17-30 6 17 12 20 3-34 5-14 6 27 6-12 1 32 11-18 3-19 4 22 7-21 8 30 5-21-1-18 5 13 3-24 6 4-6.6-49.2-8.8-7.7h-32l-13.2-23.7-11.4-9.2-8.4 4.8-13.2-1.4-12.4 11.7-37.2 56.6-5.8 30.5 5.8-5.7 6 15.3 10.2-17.5z"/>
+  <circle id="mask" class="st9" cx="198.6" cy="185.8" r="25.9"/>
+  <circle id="maskBevel" class="st21" cx="199.8" cy="189.1" r="20.4"/>
+  <path id="maskPlate" class="st22" d="M219.4 183h-14.8l-11.8-12.3-8.4 2.5-4 8.8 7.7 10-2 12 5.4 5 8.4.5 7-7.7 10-3.3 3.6-6z"/>
+  <path class="st23" d="M236.6 314.3l-1.2-32.2-6.4 21.4z"/>
+  <ellipse id="mouth" class="st24" cx="195.1" cy="201.5" rx="4.5" ry="5.6"/>
+  <ellipse id="lefteye" class="st24" cx="191.6" cy="183" rx="5.2" ry="6.1"/>
+  <ellipse id="righteye" class="st24" cx="211.1" cy="191.8" rx="5.7" ry="4.8"/>
+</svg>
