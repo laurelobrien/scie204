@@ -8,8 +8,8 @@
 //declare and initialize variables
 int fc = 0; //frame counter, game is 60fps
 boolean isRunning = false; //indicate if game is running
-int enemyHorzVel = 1; //x-axis velocity
-int enemyVertVel = 1; //y-axis velocity  
+float enemyHorzVel = random(0.5, 5); //x-axis velocity
+float enemyVertVel = random(0.5, 5); //y-axis velocity  
 int enemyX = 200;
 int enemyY = 300;
 int enemyDiam = 30; //w and h dimensions of enemy
