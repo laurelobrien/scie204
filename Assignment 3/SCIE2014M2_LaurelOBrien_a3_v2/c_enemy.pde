@@ -58,3 +58,9 @@ void limitSpeed()
     enemyVertVel *= 1.1;
   }
 }
+
+void randomizeEnemy() 
+{
+  enemyX = random(boundaryMargin, width - boundaryMargin);
+  enemyY = random(boundaryMargin, height - boundaryMargin);
+}

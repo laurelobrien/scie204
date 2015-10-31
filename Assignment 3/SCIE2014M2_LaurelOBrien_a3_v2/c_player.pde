@@ -71,7 +71,6 @@ void drawPilot()
 //randomize player pos in the screen
 void randomizePilot()
 {
-  int boundaryMargin = 20; //minimum distance from edge of canvas
   pilotX = random(boundaryMargin, width - boundaryMargin); //randomize pos excluding boundaryMargin
   pilotY = random(boundaryMargin, height - boundaryMargin);
   numColl = 0;//reset number of collisions
