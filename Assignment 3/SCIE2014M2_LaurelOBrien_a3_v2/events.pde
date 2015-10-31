@@ -19,7 +19,7 @@ void mousePressed()
   {
     isRunning = true; //turn game on
     pilot.randomizePilot(); //randomize pilot position
-    randomizeEnemy(); //random enemy position
+    enemy1.randomizeEnemy();
     
     //randomize and draw enemies
   }

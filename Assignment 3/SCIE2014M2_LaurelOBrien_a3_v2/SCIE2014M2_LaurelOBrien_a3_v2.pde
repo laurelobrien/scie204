@@ -8,15 +8,10 @@
 //declare and initialize variables
 int fc = 0; //frame counter, game is 60fps
 boolean isRunning = false; //indicate if game is running
-float enemyHorzVel = random(0.5,5); //x-axis velocity
-float enemyVertVel = random(0.5,6); //y-axis velocity  
-float enemyX = 200;
-float enemyY = 300;
-int enemyDiam = 30; //w and h dimensions of enemy
-int enemyRad = enemyDiam / 2; //radius of enemy (for rectMode(CENTER) considerations)
 int boundaryMargin = 20; //minimum distance from edge of canvas
 
 c_pilot pilot = new c_pilot(); //new user-controlled object from c_player class
+enemy enemy1 = new enemy(); //new user-controlled object from c_player class
 
 
 //initial settings, only declared or performed at start
@@ -25,7 +20,7 @@ void setup()
   size(640, 480);
   background(#CAE3A5); //bg: light green
   pilot.randomizePilot(); //random initial position of pilot object
-  randomizeEnemy();
+  enemy1.randomizeEnemy();
   rectMode(CENTER);
 }
 
@@ -36,10 +31,10 @@ void draw()
   //check if game is running
   if (isRunning) {
     pilot.movePilotFollowMouse(); //move pilot object to mouse pos
-    moveEnemy(); //start enemy bouncing around canvas
+    enemy1.moveEnemy(); //start enemy bouncing around canvas
   }
   
   //draw all
   pilot.drawPilot();
-  drawEnemy();
+  enemy1.drawEnemy();
 }
