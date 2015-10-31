@@ -9,7 +9,7 @@
 int fc = 0; //frame counter, game is 60fps
 boolean isRunning = false; //indicate if game is running
 
-c_pilot pilot = new c_pilot(); //user-controlled object from c_player class
+c_pilot pilot = new c_pilot(); //new user-controlled object from c_player class
 
 
 //initial settings, only declared or performed at start
@@ -24,5 +24,8 @@ void draw()
 {
   background(#CAE3A5); //light green bg: erase last frame
   pilot.drawPilot();
-  pilot.movePilotFollowMouse();
+  
+  if (isRunning) {
+    pilot.movePilotFollowMouse();
+  }
 }
