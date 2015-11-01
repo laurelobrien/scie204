@@ -77,11 +77,6 @@ void randomizePilot()
 }
 
 
-
-/* code written in class
-// not implemented yet
-// will apply to 4 randomly-moving enemy objects
-//
 //see if player collided with the enemy
 //enemyX, enemyY is enemy position x and y
 boolean checkCollisionWithEnemy(float enemyX, float enemyY)
@@ -89,11 +84,11 @@ boolean checkCollisionWithEnemy(float enemyX, float enemyY)
   //check for collision with player
   if(dist(pilotX, pilotY, enemyX, enemyY) < pilotSize)
   {    
-    numColl ++; //another collision detected
-    println("collision detected --> #" + numColl);
-    return true;//there was a collision        
+    //numColl ++; //another collision detected
+    //println("collision detected --> #" + numColl);
+    return true; //there was a collision        
   }
-  return false;//no collision detected
-} */
+  return false; //no collision detected
+}
 
 } //end of player class

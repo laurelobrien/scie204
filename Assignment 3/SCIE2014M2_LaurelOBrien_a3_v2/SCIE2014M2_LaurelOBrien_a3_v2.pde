@@ -36,11 +36,30 @@ void draw()
   
   //check if game is running
   if (isRunning) {
-    pilot.movePilotFollowMouse(); //move pilot object to mouse pos
-    enemy1.moveEnemy(); //start enemy bouncing around canvas
+    pilot.movePilotFollowMouse(); //move pilot object pos to mouse pos
+    enemy1.moveEnemy(); //start enemy bouncing around canvas; pos arguments changed
     enemy2.moveEnemy(); //start enemy bouncing around canvas
     enemy3.moveEnemy(); //start enemy bouncing around canvas
     enemy4.moveEnemy(); //start enemy bouncing around canvas
+    
+    
+    //check if pilot has collided with enemy1
+    if (pilot.checkCollisionWithEnemy(enemy1.enemyX, enemy1.enemyY)) 
+    {
+      enemy1.fillColour = color(255, 0, 0); //change fill to red
+    }
+    if (pilot.checkCollisionWithEnemy(enemy2.enemyX, enemy2.enemyY)) 
+    {
+      enemy2.fillColour = color(255, 0, 0); //change fill to red
+    }
+    if (pilot.checkCollisionWithEnemy(enemy3.enemyX, enemy3.enemyY)) 
+    {
+      enemy3.fillColour = color(255, 0, 0); //change fill to red
+    }
+    if (pilot.checkCollisionWithEnemy(enemy4.enemyX, enemy4.enemyY)) 
+    {
+      enemy4.fillColour = color(255, 0, 0); //change fill to red
+    }
   }
   
   //draw all
