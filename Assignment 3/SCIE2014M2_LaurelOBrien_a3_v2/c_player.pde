@@ -15,6 +15,8 @@ float pilotSpeed = 4;//pilot's speed (rate of position change per frame)
 int pilotSize = 30; //pilot size
 int numColl = 0;//number of collisions between player and bs
 float easing = 0.05; //percent of distance between mouse and pilot position
+boolean isCarryingWater = false;
+color pilotColour = color(255, 255, 50); //yellow
 
 
 
@@ -59,7 +61,7 @@ void drawPilot()
 {
   pushMatrix(); //isolate memory
   
-  fill(#FFFF00);//yellow
+  fill(pilotColour);//yellow
   ellipse(pilotX, pilotY, 20, 20); //pilot's shape
   
   popMatrix(); //done isolating memory
@@ -89,6 +91,16 @@ boolean checkCollisionWithEnemy(float enemyX, float enemyY)
     return true; //there was a collision        
   }
   return false; //no collision detected
+}
+
+//see if player collided with the lake
+void checkWaterStorage()
+{
+  //check for collision with player
+  if(dist(pilotX, pilotY, lakeXPos, lakeYPos) < pilotSize)
+  {    
+    isCarryingWater = true; //there was a collision; pilot now carrying water
+  }
 }
 
 } //end of player class
