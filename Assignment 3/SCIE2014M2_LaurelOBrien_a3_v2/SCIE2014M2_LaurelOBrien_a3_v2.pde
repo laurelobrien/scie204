@@ -8,6 +8,7 @@
 //declare and initialize variables
 int fc = 0; //frame counter, game is 60fps
 boolean isRunning = false; //indicate if game is running
+boolean isGameOver = true; //player lost, game is over
 int boundaryMargin = 20; //minimum distance from edge of canvas
 
 c_pilot pilot = new c_pilot(); //new user-controlled object from c_player class
@@ -33,6 +34,13 @@ void setup()
 void draw() 
 {
   background(#CAE3A5); //light green bg: erase last frame
+
+  //draw all
+  pilot.drawPilot();
+  enemy1.drawEnemy();
+  enemy2.drawEnemy();
+  enemy3.drawEnemy();
+  enemy4.drawEnemy();
   
   //check if game is running
   if (isRunning) {
@@ -42,30 +50,10 @@ void draw()
     enemy3.moveEnemy(); //start enemy bouncing around canvas
     enemy4.moveEnemy(); //start enemy bouncing around canvas
     
-    
-    //check if pilot has collided with enemy1
-    if (pilot.checkCollisionWithEnemy(enemy1.enemyX, enemy1.enemyY)) 
+    //check if a game-over requirement has been met
+    if (hasPlayerLost()) 
     {
-      enemy1.fillColour = color(255, 0, 0); //change fill to red
-    }
-    if (pilot.checkCollisionWithEnemy(enemy2.enemyX, enemy2.enemyY)) 
-    {
-      enemy2.fillColour = color(255, 0, 0); //change fill to red
-    }
-    if (pilot.checkCollisionWithEnemy(enemy3.enemyX, enemy3.enemyY)) 
-    {
-      enemy3.fillColour = color(255, 0, 0); //change fill to red
-    }
-    if (pilot.checkCollisionWithEnemy(enemy4.enemyX, enemy4.enemyY)) 
-    {
-      enemy4.fillColour = color(255, 0, 0); //change fill to red
+      isRunning = false; //stop the game
     }
   }
-  
-  //draw all
-  pilot.drawPilot();
-  enemy1.drawEnemy();
-  enemy2.drawEnemy();
-  enemy3.drawEnemy();
-  enemy4.drawEnemy();
 }

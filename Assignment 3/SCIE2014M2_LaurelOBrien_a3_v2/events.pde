@@ -27,3 +27,38 @@ void mousePressed()
     //randomize and draw enemies
   }
 }
+
+
+///////////////////////
+//game over events
+
+boolean hasPlayerLost() 
+{
+  //check if pilot has collided with enemy1 through enemy4
+  if (pilot.checkCollisionWithEnemy(enemy1.enemyX, enemy1.enemyY)) 
+  {
+    return true;
+  }
+  if (pilot.checkCollisionWithEnemy(enemy2.enemyX, enemy2.enemyY)) 
+  {
+    return true;
+  }
+  if (pilot.checkCollisionWithEnemy(enemy3.enemyX, enemy3.enemyY)) 
+  {
+    return true;
+  }
+  if (pilot.checkCollisionWithEnemy(enemy4.enemyX, enemy4.enemyY)) 
+  {
+    return true;
+  }
+  //check if 30 seconds have elapsed
+  if (frameCount == 1800) 
+  {
+    return true;
+  } 
+  //else, game is still running
+  else 
+  {
+    return false;
+  }
+}
