@@ -38,12 +38,12 @@ void draw()
   background(#CAE3A5); //light green bg: erase last frame
 
   //draw all
-  pilot.drawPilot();
   enemy1.drawEnemy();
   enemy2.drawEnemy();
   enemy3.drawEnemy();
   enemy4.drawEnemy();
   lake(lakeXPos, lakeYPos);
+  pilot.drawPilot();
   
   //check if game is running
   if (isRunning) {
