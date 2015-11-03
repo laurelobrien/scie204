@@ -24,13 +24,19 @@ void mousePressed()
     enemy3.randomizeEnemy();
     enemy4.randomizeEnemy();
     
-    //randomize and draw enemies
+    //reset booleans
+    isFireBurning = true;
+    canWin = false;
   }
 }
 
 
 ///////////////////////
-//game over events
+// game over conditions
+//
+// 1. player has touched enemy
+// OR
+// 2. thirty seconds have elapsed
 
 boolean hasPlayerLost() 
 {
@@ -60,5 +66,25 @@ boolean hasPlayerLost()
   else 
   {
     return false;
+  }
+}
+
+
+///////////////////////
+// win conditions
+//
+// 1. touch lake to pick up water, AND
+// 2. touch fire while carrying water to extinguish flames, AND
+// 3. touch landing pad after extinguishing flames
+
+//check if player touched fire while carrying water
+void douseFlames()
+{
+  //check for collision with player
+  if((dist(pilot.pilotX, pilot.pilotY, fireXPos, fireYPos) < pilot.pilotSize) && (pilot.isCarryingWater == true))
+  {    
+    isFireBurning = false; //fire extinguished
+    canWin = true; //can land safely to win
+    pilot.isCarryingWater = false; //water load dropped
   }
 }

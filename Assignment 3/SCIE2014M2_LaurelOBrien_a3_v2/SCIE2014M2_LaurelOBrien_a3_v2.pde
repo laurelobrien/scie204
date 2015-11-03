@@ -7,11 +7,16 @@
 
 //declare and initialize variables
 int fc = 0; //frame counter, game is 60fps
-boolean isRunning = false; //indicate if game is running
-boolean isGameOver = true; //player lost, game is over
 int boundaryMargin = 20; //minimum distance from edge of canvas
+boolean isRunning = false; //indicate if game is running
+boolean isGameOver = false; //player lost, game is over
+boolean canWin = false;
+boolean isFireBurning = true;
+
 float lakeXPos = random(0+boundaryMargin, 640-boundaryMargin);
 float lakeYPos = random(0+boundaryMargin, 480-boundaryMargin);
+float fireXPos = random(0+boundaryMargin, 640-boundaryMargin);;
+float fireYPos = random(0+boundaryMargin, 480-boundaryMargin);;
 
 c_pilot pilot = new c_pilot(); //new user-controlled object from c_player class
 enemy enemy1 = new enemy(color(100), 30); //new object from enemy class
@@ -43,6 +48,7 @@ void draw()
   enemy3.drawEnemy();
   enemy4.drawEnemy();
   lake(lakeXPos, lakeYPos);
+  forestFire();
   pilot.drawPilot();
   
   //check if game is running
@@ -55,19 +61,17 @@ void draw()
     
     pilot.checkWaterStorage(); //check if pilot has picked up water
     
-    if (pilot.isCarryingWater == true) 
-    {
-      drawWaterLoad();
-    }
+    douseFlames();
     
-    /*check if a game-over requirement has been met
+    //run if any game-over condition has been met
     if (hasPlayerLost()) 
     {
       isRunning = false; //stop the game
+      canWin = false; //reset canWin boolean 
       println("GAME OVER, MAN. GAME OVER.");
       println("Right-click to play again.");
-    }*/
-    
+    }
+   
   }
 }
 
@@ -81,4 +85,19 @@ void drawWaterLoad()
 {
   fill(#12deef); //cyan
   ellipse(pilot.pilotX - 10, pilot.pilotY - 10, 10, 10); //ball of water near pilot
+}
+
+void forestFire() 
+{
+  //check status of flames to choose fill colour
+  if (isFireBurning == false) 
+  {
+    fill(50, 20, 20); //sooty brown
+  }
+  else 
+  {
+  fill(255, 80, 30); //bright red
+  }
+  
+  rect(fireXPos, fireYPos, 30, 30); //rectangle of fire
 }

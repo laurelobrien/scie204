@@ -65,6 +65,12 @@ void drawPilot()
   ellipse(pilotX, pilotY, 20, 20); //pilot's shape
   
   popMatrix(); //done isolating memory
+  
+  //if pilot has picked up water at the lake
+  if (isCarryingWater == true) 
+  {
+    drawWaterLoad(); //draw "satellite" ball of water
+  }
 }
 
 
