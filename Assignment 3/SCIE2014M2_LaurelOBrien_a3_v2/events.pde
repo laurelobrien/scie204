@@ -77,10 +77,10 @@ void resetGame()
   
   //re-randomize positions
   pilot.randomizePilot(); //randomize pilot position
-  enemy1.randomizeEnemy(); //randomize enemy positions
-  enemy2.randomizeEnemy();
-  enemy3.randomizeEnemy();
-  enemy4.randomizeEnemy();
+  enemy1.initialPosition(0+enemy1.enemyRad, 0 + enemy1.enemyRad); //initial position of 4 enemy objects in 4 corners
+  enemy2.initialPosition(width-enemy2.enemyRad, 0+enemy2.enemyRad);
+  enemy3.initialPosition(0+enemy3.enemyRad, height-enemy3.enemyRad);
+  enemy4.initialPosition(height-enemy4.enemyRad, 0+enemy4.enemyRad);
   lakeXPos = random(0+boundaryMargin, 640-boundaryMargin); //randomize lake position
   lakeYPos = random(0+boundaryMargin, 480-boundaryMargin);
   fireXPos = random(0+boundaryMargin, 640-boundaryMargin); //randomize fire position

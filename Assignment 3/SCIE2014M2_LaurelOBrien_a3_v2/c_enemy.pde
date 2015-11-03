@@ -73,9 +73,9 @@ class enemy
     rect(enemyX, enemyY, enemyDiam, enemyDiam);
   }
   
-  void randomizeEnemy() 
+  void initialPosition(int xxx, int yyy) 
   {
-    enemyX = random(boundaryMargin, width - boundaryMargin);
-    enemyY = random(boundaryMargin, height - boundaryMargin);
+    enemyX = xxx;
+    enemyY = yyy;
   }
 }

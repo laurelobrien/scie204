@@ -40,10 +40,10 @@ void setup()
   landingPadXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize landing pad position
   landingPadYPos = random(0+boundaryMargin, height-boundaryMargin);
   pilot.randomizePilot(); //random initial position of pilot object
-  enemy1.randomizeEnemy(); //random initial position of 4 enemy objects
-  enemy2.randomizeEnemy();
-  enemy3.randomizeEnemy();
-  enemy4.randomizeEnemy();
+  enemy1.initialPosition(0+enemy1.enemyDiam, 0+enemy1.enemyDiam); //initial position of 4 enemy objects in 4 corners
+  enemy2.initialPosition(width-enemy2.enemyDiam, 0+enemy2.enemyDiam);
+  enemy3.initialPosition(0+enemy3.enemyDiam, height-enemy3.enemyDiam);
+  enemy4.initialPosition(width-enemy4.enemyDiam, height-enemy4.enemyDiam);
 }
 
 //draw 4 enemies bouncing around the canvas, a pilot the player can control,
