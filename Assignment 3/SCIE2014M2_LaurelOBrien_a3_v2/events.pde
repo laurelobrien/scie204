@@ -1,5 +1,4 @@
 ///////////////////////
-//
 //mouse interaction events
 
 //will be called when any mouse button is pressed
@@ -17,16 +16,9 @@ void mousePressed()
   //if right mouse button is pressed:
   if (mouseButton == RIGHT) 
   {
-    isRunning = true; //turn game on
-    pilot.randomizePilot(); //randomize pilot position
-    enemy1.randomizeEnemy();
-    enemy2.randomizeEnemy();
-    enemy3.randomizeEnemy();
-    enemy4.randomizeEnemy();
+    isRunning = false; //turn/keep game off
     
-    //reset booleans
-    isFireBurning = true;
-    canWin = false;
+    resetGame();
   }
 }
 
@@ -58,7 +50,7 @@ boolean hasPlayerLost()
     return true;
   }
   //check if 30 seconds have elapsed
-  if (frameCount == 1800) 
+  if (fc == 1800) 
   {
     return true;
   } 
@@ -70,12 +62,36 @@ boolean hasPlayerLost()
 }
 
 
+
+//reset game positions, booleans, counters etc for new game
+void resetGame() 
+{
+  //reset booleans
+  pilot.isCarryingWater = false;
+  isFireBurning = true;
+  canWin = false;
+  
+  //re-randomize positions
+  pilot.randomizePilot(); //randomize pilot position
+  enemy1.randomizeEnemy(); //randomize enemy positions
+  enemy2.randomizeEnemy();
+  enemy3.randomizeEnemy();
+  enemy4.randomizeEnemy();
+  lakeXPos = random(0+boundaryMargin, 640-boundaryMargin); //randomize lake position
+  lakeYPos = random(0+boundaryMargin, 480-boundaryMargin);
+  fireXPos = random(0+boundaryMargin, 640-boundaryMargin); //randomize fire position
+  fireYPos = random(0+boundaryMargin, 480-boundaryMargin);
+}
+
+
+
 ///////////////////////
 // win conditions
 //
 // 1. touch lake to pick up water, AND
 // 2. touch fire while carrying water to extinguish flames, AND
 // 3. touch landing pad after extinguishing flames
+
 
 //check if player touched fire while carrying water
 void douseFlames()
@@ -86,5 +102,22 @@ void douseFlames()
     isFireBurning = false; //fire extinguished
     canWin = true; //can land safely to win
     pilot.isCarryingWater = false; //water load dropped
+  }
+}
+
+
+
+//check if player touched landing pad after extinguishing fire
+boolean hasPlayerWon()
+{
+  //check for collision with player
+  if((dist(pilot.pilotX, pilot.pilotY, landingPadXPos, landingPadYPos) < pilot.pilotSize) && (isFireBurning == false))
+  {    
+    isRunning = false; //stop game
+    return true; //player has done their job and landed safely: win!
+  }
+  else 
+  {
+    return false; //player has not done their job yet
   }
 }

@@ -109,4 +109,11 @@ void checkWaterStorage()
   }
 }
 
+//draw satellite of water following pilot
+void drawWaterLoad() 
+{
+  fill(#12deef); //cyan
+  ellipse(pilot.pilotX - 10, pilot.pilotY - 10, 10, 10); //ball of water near pilot
+}
+
 } //end of player class
