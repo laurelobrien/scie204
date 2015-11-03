@@ -32,9 +32,14 @@ void mousePressed()
 
 void gameOverScreen() 
 {
-  background(150, 0, 0); //dark red
+  isRunning = false; //turn off game
+  bgColour = color(100, 10, 10); //dark red
+  println("GAME OVER, MAN. GAME OVER.");
 }
 
+
+
+//check if any game over conditions have been met
 boolean hasPlayerLost() 
 {
   //check if pilot has collided with enemy1 through enemy4
@@ -99,12 +104,10 @@ void resetGame()
 // 3. touch landing pad after extinguishing flames
 
 void wonTheGameScreen() 
-{
-  background(255, 150, 100); //peachy pink
-  
+{ 
   println("You won in " + str(fc/60) + " seconds."); //report seconds taken to win
-  
   isRunning = false; //turn off game
+  bgColour = color(255, 180, 160); //peachy pink background
 }
 
 //check if player touched fire while carrying water
