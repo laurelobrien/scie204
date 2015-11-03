@@ -5,12 +5,11 @@
 //lobrien14692@ecuad.ca
 //102615
 
-//declare and initialize variables
+//declare and/or initialize variables
 int fc = 0; //frame counter
 int boundaryMargin = 30; //minimum distance from edge of canvas
 boolean isRunning = false; //indicate if game is running
-boolean canWin = false;
-boolean isFireBurning = true;
+boolean isFireBurning = true; //indicate if fire is burning
 
 float lakeXPos;
 float lakeYPos;
@@ -47,6 +46,9 @@ void setup()
   enemy4.randomizeEnemy();
 }
 
+//draw 4 enemies bouncing around the canvas, a pilot the player can control,
+//a lake to retrieve water at, a fire burning that needs to be put out,
+//and a landing pad for the player to go home to after they put out the flames.
 void draw() 
 {
   background(#CAE3A5); //light green bg: erase last frame
@@ -86,11 +88,7 @@ void draw()
     //run if any game-over condition has been met
     if (hasPlayerWon()) 
     {
-      isRunning = false; //stop the game
-      
-      //print game-over message to console
-      println("You win!");
-      println("Right-click to play again.");
+      wonTheGameScreen();
     }  
     
     fc ++; //increment frame count

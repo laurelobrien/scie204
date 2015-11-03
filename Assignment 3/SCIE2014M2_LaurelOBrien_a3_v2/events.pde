@@ -30,6 +30,11 @@ void mousePressed()
 // OR
 // 2. thirty seconds have elapsed
 
+void gameOverScreen() 
+{
+  background(150, 0, 0); //dark red
+}
+
 boolean hasPlayerLost() 
 {
   //check if pilot has collided with enemy1 through enemy4
@@ -69,7 +74,6 @@ void resetGame()
   //reset booleans
   pilot.isCarryingWater = false;
   isFireBurning = true;
-  canWin = false;
   
   //re-randomize positions
   pilot.randomizePilot(); //randomize pilot position
@@ -81,6 +85,8 @@ void resetGame()
   lakeYPos = random(0+boundaryMargin, 480-boundaryMargin);
   fireXPos = random(0+boundaryMargin, 640-boundaryMargin); //randomize fire position
   fireYPos = random(0+boundaryMargin, 480-boundaryMargin);
+  landingPadXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize landing pad position
+  landingPadYPos = random(0+boundaryMargin, height-boundaryMargin);
 }
 
 
@@ -92,6 +98,14 @@ void resetGame()
 // 2. touch fire while carrying water to extinguish flames, AND
 // 3. touch landing pad after extinguishing flames
 
+void wonTheGameScreen() 
+{
+  background(255, 150, 100); //peachy pink
+  
+  println("You won in " + str(fc/60) + " seconds."); //report seconds taken to win
+  
+  isRunning = false; //turn off game
+}
 
 //check if player touched fire while carrying water
 void douseFlames()
@@ -100,7 +114,6 @@ void douseFlames()
   if((dist(pilot.pilotX, pilot.pilotY, fireXPos, fireYPos) < pilot.pilotSize) && (pilot.isCarryingWater == true))
   {    
     isFireBurning = false; //fire extinguished
-    canWin = true; //can land safely to win
     pilot.isCarryingWater = false; //water load dropped
   }
 }
