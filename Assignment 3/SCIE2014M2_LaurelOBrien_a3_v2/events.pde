@@ -76,7 +76,6 @@ void resetGame()
   isFireBurning = true;
   
   //re-randomize positions
-  pilot.randomizePilot(); //randomize pilot position
   enemy1.initialPosition(0+enemy1.enemyRad, 0 + enemy1.enemyRad); //initial position of 4 enemy objects in 4 corners
   enemy2.initialPosition(width-enemy2.enemyRad, 0+enemy2.enemyRad);
   enemy3.initialPosition(0+enemy3.enemyRad, height-enemy3.enemyRad);
@@ -87,6 +86,7 @@ void resetGame()
   fireYPos = random(0+boundaryMargin, 480-boundaryMargin);
   landingPadXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize landing pad position
   landingPadYPos = random(0+boundaryMargin, height-boundaryMargin);
+  pilot.placePilot(); //place pilot on landing pad
 }
 
 

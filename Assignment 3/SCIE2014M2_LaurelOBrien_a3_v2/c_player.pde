@@ -77,10 +77,10 @@ void drawPilot()
 
 
 //randomize player pos in the screen
-void randomizePilot()
+void placePilot()
 {
-  pilotX = random(boundaryMargin, width - boundaryMargin); //randomize pos excluding boundaryMargin
-  pilotY = random(boundaryMargin, height - boundaryMargin);
+  pilotX = landingPadXPos;
+  pilotY = landingPadYPos;
   numColl = 0;//reset number of collisions
 }
 

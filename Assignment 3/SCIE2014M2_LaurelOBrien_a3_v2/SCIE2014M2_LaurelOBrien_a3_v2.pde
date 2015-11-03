@@ -39,7 +39,7 @@ void setup()
   fireYPos = random(0+boundaryMargin, height-boundaryMargin);
   landingPadXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize landing pad position
   landingPadYPos = random(0+boundaryMargin, height-boundaryMargin);
-  pilot.randomizePilot(); //random initial position of pilot object
+  pilot.placePilot(); //place pilot on top of landng pad
   enemy1.initialPosition(0+enemy1.enemyDiam, 0+enemy1.enemyDiam); //initial position of 4 enemy objects in 4 corners
   enemy2.initialPosition(width-enemy2.enemyDiam, 0+enemy2.enemyDiam);
   enemy3.initialPosition(0+enemy3.enemyDiam, height-enemy3.enemyDiam);
@@ -127,6 +127,6 @@ void forestFire()
 //draw landing pad in random, static position
 void landingPad() 
 {
-  fill(#FAE821); //yellow
-  rect(landingPadXPos, landingPadYPos, 30, 50); //landing pad shape
+  fill(20, 200, 30); //dark green
+  rect(landingPadXPos, landingPadYPos, 40, 40); //landing pad shape
 }
