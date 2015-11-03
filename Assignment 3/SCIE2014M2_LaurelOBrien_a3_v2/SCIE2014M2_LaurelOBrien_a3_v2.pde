@@ -32,7 +32,9 @@ void setup()
   background(#CAE3A5); //bg: light green
   rectMode(CENTER); //draw rectangles from their center
   
-  //randomize starting positions of game elements
+  resetGame(); //initialize starting positions of elements, booleans, counters etc
+  
+  /*randomize starting positions of game elements
   lakeXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize lake position
   lakeYPos = random(0+boundaryMargin, height-boundaryMargin);
   fireXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize fire position
@@ -43,7 +45,7 @@ void setup()
   enemy1.initialPosition(0+enemy1.enemyDiam, 0+enemy1.enemyDiam); //initial position of 4 enemy objects in 4 corners
   enemy2.initialPosition(width-enemy2.enemyDiam, 0+enemy2.enemyDiam);
   enemy3.initialPosition(0+enemy3.enemyDiam, height-enemy3.enemyDiam);
-  enemy4.initialPosition(width-enemy4.enemyDiam, height-enemy4.enemyDiam);
+  enemy4.initialPosition(width-enemy4.enemyDiam, height-enemy4.enemyDiam);*/
 }
 
 //draw 4 enemies bouncing around the canvas, a pilot the player can control,
