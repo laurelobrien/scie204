@@ -1,3 +1,8 @@
+////////////////////
+//enemy class
+//
+//its objects take 2 arguments: fill colour and square dimension
+
 class enemy 
 {
   //declare and initialize attributes

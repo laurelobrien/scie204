@@ -1,8 +1,12 @@
 ///////////////////////
-//mouse interaction events
+// GAME EVENTS
+//
+// what happens with mouse clicks, winning, losing, collision, etc
 
+///////////////////////
+//mouse interaction events
+//
 //will be called when any mouse button is pressed
-//needs to be called in draw() or it will run once
 void mousePressed() 
 {
   background(#CAE3A5); //green: erase last frame
@@ -18,9 +22,10 @@ void mousePressed()
   {
     isRunning = false; //turn/keep game off
     
-    resetGame();
+    resetGame(); //reset relevant variables to their starting positions
   }
 }
+
 
 
 ///////////////////////
@@ -30,10 +35,11 @@ void mousePressed()
 // OR
 // 2. thirty seconds have elapsed
 
+//run when the player has lost
 void gameOverScreen() 
 {
   isRunning = false; //turn off game
-  bgColour = color(100, 10, 10); //dark red
+  bgColour = color(100, 10, 10); //dark red background
   println("GAME OVER, MAN. GAME OVER.");
 }
 
@@ -64,7 +70,7 @@ boolean hasPlayerLost()
   {
     return true;
   } 
-  //else, game is still running
+  //else, player has not lost this frame
   else 
   {
     return false;

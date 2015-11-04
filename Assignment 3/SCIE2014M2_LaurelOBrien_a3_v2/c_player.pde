@@ -1,10 +1,6 @@
 ////////////////////
 //player class
-//
-//includes everything for player
-//-attributes (variables)
-//-actions (functions)
-//
+
 class c_pilot
 {
 
