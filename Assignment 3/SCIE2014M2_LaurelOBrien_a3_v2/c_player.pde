@@ -75,7 +75,7 @@ boolean checkCollisionWithEnemy(float enemyX, float enemyY)
 void checkWaterStorage()
 {
   //check for collision with player
-  if(dist(pilotX, pilotY, lakeXPos, lakeYPos) < pilotSize)
+  if(dist(pilotX, pilotY, lakeXPos, lakeYPos) < 10)
   {    
     isCarryingWater = true; //there was a collision; pilot now carrying water
   }

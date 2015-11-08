@@ -127,7 +127,7 @@ void wonTheGameScreen()
 void douseFlames()
 {
   //check for collision with player that's carrying water
-  if((dist(pilot.pilotX, pilot.pilotY, fireXPos, fireYPos) < pilot.pilotSize/2 + fireSize/2) 
+  if((dist(pilot.pilotX, pilot.pilotY, fireXPos, fireYPos) <= 10) 
   && (pilot.isCarryingWater == true))
   {    
     isFireBurning = false; //fire extinguished
@@ -141,7 +141,8 @@ void douseFlames()
 boolean hasPlayerWon()
 {
   //check for collision with player
-  if((dist(pilot.pilotX, pilot.pilotY, landingPadXPos, landingPadYPos) < pilot.pilotSize) && (isFireBurning == false))
+  if((dist(pilot.pilotX, pilot.pilotY, landingPadXPos, landingPadYPos) <= 10) 
+  && (isFireBurning == false))
   {    
     isRunning = false; //stop game
     return true; //player has done their job and landed safely: win!
