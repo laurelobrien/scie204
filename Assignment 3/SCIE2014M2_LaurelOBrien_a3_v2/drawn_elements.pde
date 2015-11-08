@@ -26,7 +26,7 @@ void forestFire()
   fill(255, 80, 30); //burning: bright red
   }
   
-  rect(fireXPos, fireYPos, 30, 30); //rectangle of fire
+  rect(fireXPos, fireYPos, fireSize, fireSize); //rectangle of fire
 }
 
 

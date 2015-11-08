@@ -11,16 +11,16 @@ void mousePressed()
 {
   background(#CAE3A5); //green: erase last frame
   
-  //if left mouse button is pressed:
-  if (mouseButton == LEFT) 
+  //if left mouse button is pressed and the game isn't already running:
+  if (mouseButton == LEFT && isRunning == false) 
   {
-    isRunning = !isRunning; //toggle isRunning boolean; turn game on/off
+    isRunning = true; //start the game
   }
   
   //if right mouse button is pressed:
   if (mouseButton == RIGHT) 
   {
-    isRunning = false; //turn/keep game off
+    isRunning = true; //turn or keep game on
     
     resetGame(); //reset relevant variables to their starting positions
   }
@@ -82,21 +82,28 @@ boolean hasPlayerLost()
 //reset game positions, booleans, counters etc for new game
 void resetGame() 
 {
+  bgColour = color(200, 250, 150); //re-assign bg to a light green background
+  
   //reset booleans
   pilot.isCarryingWater = false;
   isFireBurning = true;
   
-  //re-randomize positions
+  //re-assign starting positions
+  //
+  //enemies in all 4 corners
   enemy1.initialPosition(0+enemy1.enemyDiam, 0+enemy1.enemyDiam); //initial position of 4 enemy objects in 4 corners
   enemy2.initialPosition(width-enemy2.enemyDiam, 0+enemy2.enemyDiam);
   enemy3.initialPosition(0+enemy3.enemyDiam, height-enemy3.enemyDiam);
   enemy4.initialPosition(width-enemy4.enemyDiam, height-enemy4.enemyDiam);
+  
+  //lake, fire, and landing pad in random position inside boundaryMargin limits
   lakeXPos = random(0+boundaryMargin, 640-boundaryMargin); //randomize lake position
   lakeYPos = random(0+boundaryMargin, 480-boundaryMargin);
   fireXPos = random(0+boundaryMargin, 640-boundaryMargin); //randomize fire position
   fireYPos = random(0+boundaryMargin, 480-boundaryMargin);
   landingPadXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize landing pad position
   landingPadYPos = random(0+boundaryMargin, height-boundaryMargin);
+  
   pilot.placePilot(); //place pilot on landing pad
 }
 
@@ -119,8 +126,9 @@ void wonTheGameScreen()
 //check if player touched fire while carrying water
 void douseFlames()
 {
-  //check for collision with player
-  if((dist(pilot.pilotX, pilot.pilotY, fireXPos, fireYPos) < pilot.pilotSize) && (pilot.isCarryingWater == true))
+  //check for collision with player that's carrying water
+  if((dist(pilot.pilotX, pilot.pilotY, fireXPos, fireYPos) < pilot.pilotSize/2 + fireSize/2) 
+  && (pilot.isCarryingWater == true))
   {    
     isFireBurning = false; //fire extinguished
     pilot.isCarryingWater = false; //water load dropped

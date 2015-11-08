@@ -7,7 +7,8 @@
 
 //declare and/or initialize variables
 int fc = 0; //frame counter
-int boundaryMargin = 30; //minimum distance from edge of canvas
+int boundaryMargin = 30; //minimum spawn distance from edge of canvas
+float fireSize = 50; //square dimensions of fire
 boolean isRunning = false; //indicate if game is running
 boolean isFireBurning = true; //indicate if fire is burning
 color bgColour = color(200, 250, 150); //background colour, changes with game state
@@ -35,25 +36,12 @@ void setup()
   rectMode(CENTER); //draw rectangles from their center
   
   resetGame(); //initialize starting positions of elements, booleans, counters etc
-  
-  /*randomize starting positions of game elements
-  lakeXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize lake position
-  lakeYPos = random(0+boundaryMargin, height-boundaryMargin);
-  fireXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize fire position
-  fireYPos = random(0+boundaryMargin, height-boundaryMargin);
-  landingPadXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize landing pad position
-  landingPadYPos = random(0+boundaryMargin, height-boundaryMargin);
-  pilot.placePilot(); //place pilot on top of landng pad
-  enemy1.initialPosition(0+enemy1.enemyDiam, 0+enemy1.enemyDiam); //initial position of 4 enemy objects in 4 corners
-  enemy2.initialPosition(width-enemy2.enemyDiam, 0+enemy2.enemyDiam);
-  enemy3.initialPosition(0+enemy3.enemyDiam, height-enemy3.enemyDiam);
-  enemy4.initialPosition(width-enemy4.enemyDiam, height-enemy4.enemyDiam);*/
 }
 
 
 
 //draw 4 enemies bouncing around the canvas, a pilot the player can control,
-//a lake to retrieve water at, a fire burning that needs to be put out,
+//a lake to retrieve water from, a fire burning that needs to be extinguished,
 //and a landing pad for the player to go home to after they put out the flames.
 void draw() 
 {
@@ -78,57 +66,20 @@ void draw()
     enemy4.moveEnemy();
     
     pilot.checkWaterStorage(); //check if pilot has picked up water
-    
-    douseFlames();
+    douseFlames(); //check if flames have extinguished
     
     //run if any game-over condition has been met
     if (hasPlayerLost()) 
     {
-      gameOverScreen();
+      gameOverScreen(); //stop game and display game-over text/bg
     }   
     
     //run if player has satisfied all win conditions
     if (hasPlayerWon()) 
     {
-      wonTheGameScreen();
+      wonTheGameScreen(); //stop game and display winning text
     }  
     
     fc ++; //increment frame count
   } //end of (isRunning) check
 } //end of draw()
-
-
-
-//draw lake in random, static position
-void lake() 
-{
-  fill(50, 100, 255); //blue
-  ellipse(lakeXPos, lakeYPos, 30, 30); //lake shape
-}
-
-
-
-//draw forest fire in random, static position
-void forestFire() 
-{
-  //check status of flames to choose fill colour
-  if (isFireBurning == false) 
-  {
-    fill(50, 20, 20); //extinguished: sooty brown
-  }
-  else 
-  {
-  fill(255, 80, 30); //burning: bright red
-  }
-  
-  rect(fireXPos, fireYPos, 30, 30); //rectangle of fire
-}
-
-
-
-//draw landing pad in random, static position
-void landingPad() 
-{
-  fill(20, 200, 30); //dark green
-  rect(landingPadXPos, landingPadYPos, 40, 40); //landing pad shape
-}

@@ -18,31 +18,7 @@ color pilotColour = color(255, 255, 50); //yellow
 
 //move pilot to follow the mouse
 void movePilotFollowMouse()
-{
-  //example code from class
-  //moves shape in a zig-zag
-  //
-  /*move horz
-  if(mouseX > pilotX)
-  {
-    pilotX += pilotSpeed;//move right
-  }
-  else if(mouseX < pilotX)
-  {
-    pilotX -= pilotSpeed;//move left
-  }
-  
-  //move vert
-  if(mouseY > pilotY)
-  {
-    pilotY += pilotSpeed;//move down
-  }
-  else if(mouseY < pilotY)
-  {
-    pilotY -= pilotSpeed;//move up
-  }
-  */
-  
+{ 
   float distanceX = mouseX - pilotX; //vert and horiz distance between mouse and pilot
   float distanceY = mouseY - pilotY;
   
