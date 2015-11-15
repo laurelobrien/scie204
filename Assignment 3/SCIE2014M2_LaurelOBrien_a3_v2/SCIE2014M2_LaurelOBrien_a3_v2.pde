@@ -8,10 +8,18 @@
 //declare and/or initialize variables
 int fc = 0; //frame counter
 int boundaryMargin = 30; //minimum spawn distance from edge of canvas
+boolean fadeIn = false;
 float fireSize = 50; //square dimensions of fire
 boolean isRunning = false; //indicate if game is running
 boolean isFireBurning = true; //indicate if fire is burning
+boolean hasStarted = false; //indicate if game has been started with left click
 color bgColour = color(200, 250, 150); //background colour, changes with game state
+
+int num = 30;
+float smokeX[] = new float[num];
+float smokeY[] = new float[num];
+color blueWater = color(50, 100, 240, 100); //low opacity blue
+color greySmoke = color(200, 100); //low opacity grey
 
 float lakeXPos;
 float lakeYPos;
@@ -20,6 +28,9 @@ float fireYPos;
 float landingPadXPos;
 float landingPadYPos;
 
+//declare and initialize c_pilot and c_enemy objects
+//
+//enemy() takes 2 arguments: greyscale color and square dimension
 c_pilot pilot = new c_pilot(); //new user-controlled object from c_player class
 enemy enemy1 = new enemy(color(100), 30); //4 new objects from enemy class
 enemy enemy2 = new enemy(color(200), 30);
@@ -71,7 +82,7 @@ void draw()
     //run if any game-over condition has been met
     if (hasPlayerLost()) 
     {
-      gameOverScreen(); //stop game and display game-over text/bg
+      gameOverScreen(); //stop game and display game-over text/bg ++;
     }   
     
     //run if player has satisfied all win conditions
@@ -81,5 +92,7 @@ void draw()
     }  
     
     fc ++; //increment frame count
-  } //end of (isRunning) check
+  } //end of isRunning() check
+
 } //end of draw()
+  

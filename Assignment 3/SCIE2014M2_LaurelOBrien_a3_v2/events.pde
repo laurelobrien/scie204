@@ -8,13 +8,12 @@
 //
 //will be called when any mouse button is pressed
 void mousePressed() 
-{
-  background(#CAE3A5); //green: erase last frame
-  
+{  
   //if left mouse button is pressed and the game isn't already running:
-  if (mouseButton == LEFT && isRunning == false) 
+  if (mouseButton == LEFT && isRunning == false && hasStarted == false) 
   {
     isRunning = true; //start the game
+    hasStarted = true; //indicate left click can no longer start the game
   }
   
   //if right mouse button is pressed:
@@ -105,6 +104,8 @@ void resetGame()
   landingPadYPos = random(0+boundaryMargin, height-boundaryMargin);
   
   pilot.placePilot(); //place pilot on landing pad
+  
+  fc = 0; //reset frame count
 }
 
 
