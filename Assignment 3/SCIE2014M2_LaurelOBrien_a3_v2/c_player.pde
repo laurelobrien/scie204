@@ -8,7 +8,7 @@ class c_pilot
 float pilotX = 55; //pilot (x, y) position
 float pilotY = 55;
 float pilotSpeed = 4;//pilot's speed (rate of position change per frame)
-int pilotSize = 40; //pilot size
+int pilotSize = 30; //pilot size
 int numColl = 0;//number of collisions between player and bs
 float easing = 0.05; //percent of distance between mouse and pilot position
 boolean isCarryingWater = false;
@@ -56,8 +56,8 @@ void drawPilot()
   ellipse(pilotX, pilotY-5, pilotSize, pilotSize/3); //plane wings
   ellipse(pilotX, pilotY+18, pilotSize/2, pilotSize/5); //plane tail
   fill(10); //dark grey
-  rect(pilotX-10, pilotY-5, 3, 11); //left wing stripe
-  rect(pilotX+10, pilotY-5, 3, 11); //right wing stripe
+  rect(pilotX-10, pilotY-5, 3, 9); //left wing stripe
+  rect(pilotX+10, pilotY-5, 3, 9); //right wing stripe
   
   popMatrix(); //done isolating memory
   //END TRANSFORMATIONS
@@ -95,7 +95,7 @@ boolean checkCollisionWithEnemy(float enemyX, float enemyY)
 void checkWaterStorage()
 {
   //check for collision with player
-  if(dist(pilotX, pilotY, lakeXPos, lakeYPos) < 10)
+  if(dist(pilotX, pilotY, lakeXPos, lakeYPos) < collisionSize)
   {    
     isCarryingWater = true; //there was a collision; pilot now carrying water
   }

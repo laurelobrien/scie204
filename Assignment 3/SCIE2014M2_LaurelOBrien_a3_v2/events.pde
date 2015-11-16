@@ -128,7 +128,7 @@ void wonTheGameScreen()
 void douseFlames()
 {
   //check for collision with player that's carrying water
-  if((dist(pilot.pilotX, pilot.pilotY, fireXPos, fireYPos) <= 10) 
+  if((dist(pilot.pilotX, pilot.pilotY, fireXPos, fireYPos) <= collisionSize) 
   && (pilot.isCarryingWater == true))
   {    
     isFireBurning = false; //fire extinguished

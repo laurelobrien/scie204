@@ -6,12 +6,10 @@
 //102615
 
 //declare and initialize global variables
-//
-//
 int fc = 0; //frame counter
 int boundaryMargin = 30; //minimum spawn distance from edge of canvas
 boolean fadeIn = false;
-float fireSize = 50; //square dimensions of fire
+float fireSize = 30; //square dimensions of fire
 boolean isRunning = false; //indicate if game is running
 boolean isFireBurning = true; //indicate if fire is burning
 boolean hasStarted = false; //indicate if game has been started with left click
@@ -32,6 +30,8 @@ float fireYPos;
 float landingPadXPos; //landing pad
 float landingPadYPos;
 
+int collisionSize = 30;
+
 //declare and initialize c_pilot and c_enemy objects
 //
 //enemy() takes 2 arguments: greyscale color and square dimension
@@ -47,11 +47,8 @@ enemy enemy4 = new enemy(color(250), 30);
 void setup() 
 {
   size(640, 480); //canvas size
-  
   rectMode(CENTER); //draw rectangles from their center
-  
-  
-  resetGame(); //initialize starting values for coordinate positions, booleans, countersialize starting positions of elements, booleans, counters etc
+  resetGame(); //initialize starting values for coordinate positions, booleans, counters
 }
 
 
