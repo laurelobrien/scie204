@@ -5,7 +5,9 @@
 //lobrien14692@ecuad.ca
 //102615
 
-//declare and/or initialize variables
+//declare and initialize global variables
+//
+//
 int fc = 0; //frame counter
 int boundaryMargin = 30; //minimum spawn distance from edge of canvas
 boolean fadeIn = false;
@@ -15,22 +17,19 @@ boolean isFireBurning = true; //indicate if fire is burning
 boolean hasStarted = false; //indicate if game has been started with left click
 color bgColour = color(200, 250, 150); //background colour, changes with game state
 
+//smoke cloud variables
 int num = 30;
 float smokeX[] = new float[num];
 float smokeY[] = new float[num];
 color blueWater = color(50, 100, 240, 100); //low opacity blue
 color greySmoke = color(200, 100); //low opacity grey
 
-float angle = 0;
-float targetAngle = 0;
-float easing = 0.05f;
-float tempAngle = 0;
-
-float lakeXPos;
+//static object position variables
+float lakeXPos; //lake
 float lakeYPos;
-float fireXPos;
+float fireXPos; //fire
 float fireYPos;
-float landingPadXPos;
+float landingPadXPos; //landing pad
 float landingPadYPos;
 
 //declare and initialize c_pilot and c_enemy objects
@@ -48,10 +47,11 @@ enemy enemy4 = new enemy(color(250), 30);
 void setup() 
 {
   size(640, 480); //canvas size
-  background(#CAE3A5); //bg: light green
+  
   rectMode(CENTER); //draw rectangles from their center
   
-  resetGame(); //initialize starting positions of elements, booleans, counters etc
+  
+  resetGame(); //initialize starting values for coordinate positions, booleans, countersialize starting positions of elements, booleans, counters etc
 }
 
 
@@ -64,34 +64,30 @@ void draw()
   background(bgColour); //light green bg: erase last frame
 
   //draw all
-  enemy1.drawEnemy();
+  enemy1.drawEnemy(); //enemies: four instances of enemy class
   enemy2.drawEnemy();
   enemy3.drawEnemy();
   enemy4.drawEnemy();
-  lake();
-  forestFire();
-  landingPad();
-  
-  pilot.drawPilot(); //draw pilot
-  
-  //popMatrix();
-  //END TRANSFORMATIONS
+  lake(); //like
+  forestFire(); //fire
+  landingPad();  //landing pad
+  pilot.drawPilot(); //pilot
   
   //run if game is running
   if (isRunning) {
-    pilot.movePilotFollowMouse(); //move pilot object pos to mouse pos
+    pilot.movePilotFollowMouse(); //move pilot pos to mouse pos
     enemy1.moveEnemy(); //move enemy pos
     enemy2.moveEnemy();
     enemy3.moveEnemy();
     enemy4.moveEnemy();
     
     pilot.checkWaterStorage(); //check if pilot has picked up water
-    douseFlames(); //check if flames have extinguished
+    douseFlames(); //check if flames have been extinguished
     
     //run if any game-over condition has been met
     if (hasPlayerLost()) 
     {
-      gameOverScreen(); //stop game and display game-over text/bg ++;
+      gameOverScreen(); //stop game and display game-over text/bg;
     }   
     
     //run if player has satisfied all win conditions
@@ -103,6 +99,5 @@ void draw()
     fc ++; //increment frame count
   } //end of isRunning() check
 
-  println(pilot.getPilotRotAng());
 } //end of draw()
   

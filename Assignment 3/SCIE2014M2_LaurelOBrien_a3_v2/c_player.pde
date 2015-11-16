@@ -14,6 +14,9 @@ float easing = 0.05; //percent of distance between mouse and pilot position
 boolean isCarryingWater = false;
 color pilotColour = color(250); //light grey
 
+float angle = 0;
+float targetAngle = 0;
+
 
 
 //move pilot to follow the mouse
@@ -31,18 +34,18 @@ void movePilotFollowMouse()
 //draw the pilot and its smoke cloud pointing towards the mouse
 void drawPilot()
 {
+  //draw smoke trail if game is running
+  if (isRunning == true) 
+  {
+    drawSmokeTrail(); //call drawSmokeTrail() with rgba arguments
+  }
+  
   //BEGIN TRANSFORMATIONS
   pushMatrix(); //isolate memory
   
   translate(pilot.pilotX, pilot.pilotY); //translate pilot back to its correct position
   rotate(getPilotRotAng()); //rotate pilot by targetAngle
   translate(pilot.pilotX*-1, pilot.pilotY*-1); //move pilot to canvas origin (0, 0)
-  
-  //draw smoke trail if game is running
-  if (isRunning == true) 
-  {
-    drawSmokeTrail(); //call drawSmokeTrail() with rgba arguments
-  }
   
   //draw shapes making up pilot
   fill(pilotColour); //plane body colour
