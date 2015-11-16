@@ -32,6 +32,8 @@ float landingPadYPos;
 
 int collisionSize = 30;
 
+PGraphics endOverlay; //PGraphics that holds win/lose overlay effect
+
 //declare and initialize c_pilot and c_enemy objects
 //
 //enemy() takes 2 arguments: greyscale color and square dimension
@@ -49,6 +51,8 @@ void setup()
   size(640, 480); //canvas size
   rectMode(CENTER); //draw rectangles from their center
   resetGame(); //initialize starting values for coordinate positions, booleans, counters
+  
+  endOverlay = createGraphics(width, height); //initialize endOverlay size
 }
 
 
@@ -95,6 +99,10 @@ void draw()
     
     fc ++; //increment frame count
   } //end of isRunning() check
-
+    
+  //display anything that was written to endOverlay in 
+  //gameOverScreen() or wonTheGameScreen()
+  image(endOverlay, 0, 0);
+  
 } //end of draw()
   

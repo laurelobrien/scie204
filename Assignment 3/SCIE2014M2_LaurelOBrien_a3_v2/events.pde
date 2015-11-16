@@ -37,9 +37,18 @@ void mousePressed()
 //run when the player has lost
 void gameOverScreen() 
 {
+  println("GAME OVER, MAN. GAME OVER.");
+  
+  //write to endOverlay
+  endOverlay.beginDraw();
+  endOverlay.noStroke();
+  endOverlay.fill(100, 10, 10, 160); //low opacity dark red
+  endOverlay.rect(0, 0, width, height); //rect filling canvas
+  endOverlay.endDraw();
+  //end writing to endOverlay
+  
   isRunning = false; //turn off game
   bgColour = color(100, 10, 10); //dark red background
-  println("GAME OVER, MAN. GAME OVER.");
 }
 
 
@@ -120,6 +129,16 @@ void resetGame()
 void wonTheGameScreen() 
 { 
   println("You won in " + str(fc/60) + " seconds."); //report seconds taken to win
+  
+  //write to endOverlay
+  endOverlay.beginDraw();
+  endOverlay.noStroke();
+  endOverlay.fill(255, 180, 160, 160); //low opacity peachy pink
+  endOverlay.rect(0, 0, width, height); //rect filling canvas
+  endOverlay.endDraw();
+  //end writing to endOverlay
+  
+  
   isRunning = false; //turn off game
   bgColour = color(255, 180, 160); //peachy pink background
 }
