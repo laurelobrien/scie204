@@ -110,7 +110,7 @@ void drawSmokeTrail()
   //assign pilot's position this frame into smokeX[] and smokeY[]
   int which = frameCount % num;
   smokeX[which] = pilotX;
-  smokeY[which] = pilotY+30;
+  smokeY[which] = pilotY;
   
   //loop through number of indices in smokeX/smokeY (num)
   //and draw an ellipse based on their stored coordinates
@@ -126,7 +126,11 @@ void drawSmokeTrail()
     {
       fill(greySmoke); //fill with grey
     }
-    ellipse(smokeX[index], smokeY[index], i, i);
+    
+    //map i to a value between 2 and 15 to control size of smoke cloud
+    float smokeSize = map(i, 0, num, 5, 15);
+    
+    ellipse(smokeX[index], smokeY[index], smokeSize, smokeSize); //draw smoke cloud
   }
 }
 

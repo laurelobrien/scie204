@@ -20,7 +20,7 @@ int num = 30;
 float smokeX[] = new float[num];
 float smokeY[] = new float[num];
 color blueWater = color(50, 100, 240, 100); //low opacity blue
-color greySmoke = color(200, 100); //low opacity grey
+color greySmoke = color(150, 30); //low opacity grey
 
 //static object position variables
 float lakeXPos; //lake
