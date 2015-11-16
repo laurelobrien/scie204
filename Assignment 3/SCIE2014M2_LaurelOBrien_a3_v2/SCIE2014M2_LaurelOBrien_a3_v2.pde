@@ -50,9 +50,8 @@ void setup()
 {
   size(640, 480); //canvas size
   rectMode(CENTER); //draw rectangles from their center
-  resetGame(); //initialize starting values for coordinate positions, booleans, counters
-  
   endOverlay = createGraphics(width, height); //initialize endOverlay size
+  resetGame(); //initialize starting values for coordinate positions, booleans, counters
 }
 
 

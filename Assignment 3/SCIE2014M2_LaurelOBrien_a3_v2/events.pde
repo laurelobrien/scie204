@@ -38,12 +38,18 @@ void mousePressed()
 void gameOverScreen() 
 {
   println("GAME OVER, MAN. GAME OVER.");
+  String loseText = "GAME OVER, MAN. GAME OVER.";
   
   //write to endOverlay
   endOverlay.beginDraw();
   endOverlay.noStroke();
+  endOverlay.rectMode(CENTER);
   endOverlay.fill(100, 10, 10, 160); //low opacity dark red
-  endOverlay.rect(0, 0, width, height); //rect filling canvas
+  endOverlay.rect(width/2, height/2, width, height); //rect filling canvas
+  
+  endOverlay.fill(255); //white
+  endOverlay.textSize(32);
+  endOverlay.text(loseText, width/2, height/2, 200, 200);
   endOverlay.endDraw();
   //end writing to endOverlay
   
@@ -114,6 +120,10 @@ void resetGame()
   
   pilot.placePilot(); //place pilot on landing pad
   
+  endOverlay.beginDraw();
+  endOverlay.clear(); //erase any overlay drawings from winning/losing last game
+  endOverlay.endDraw();
+  
   fc = 0; //reset frame count
 }
 
@@ -129,12 +139,18 @@ void resetGame()
 void wonTheGameScreen() 
 { 
   println("You won in " + str(fc/60) + " seconds."); //report seconds taken to win
+  String winText = "You won in "+str(fc/60)+" seconds.";
   
   //write to endOverlay
   endOverlay.beginDraw();
   endOverlay.noStroke();
+  endOverlay.rectMode(CENTER);
   endOverlay.fill(255, 180, 160, 160); //low opacity peachy pink
-  endOverlay.rect(0, 0, width, height); //rect filling canvas
+  endOverlay.rect(width/2, height/2, width, height); //rect filling canvas  
+  
+  endOverlay.fill(255); //white
+  endOverlay.textSize(32);
+  endOverlay.text(winText, width/2, height/2, 200, 200);
   endOverlay.endDraw();
   //end writing to endOverlay
   
