@@ -37,21 +37,21 @@ void mousePressed()
 //run when the player has lost
 void gameOverScreen() 
 {
-  println("GAME OVER, MAN. GAME OVER.");
-  String loseText = "GAME OVER, MAN. GAME OVER.";
+  println("GAME OVER, MAN. GAME OVER."); //output printed to console
+  String loseText = "GAME OVER, MAN. GAME OVER."; //String to be displayed on canvas
   
-  //write to endOverlay
+  //draw to endOverlay
   endOverlay.beginDraw();
-  endOverlay.noStroke();
-  endOverlay.rectMode(CENTER);
+  endOverlay.noStroke(); //turn off stroke inside PGraphic
+  endOverlay.rectMode(CENTER); //draw rectangles (and textboxes) from their center
   endOverlay.fill(100, 10, 10, 160); //low opacity dark red
   endOverlay.rect(width/2, height/2, width, height); //rect filling canvas
   
   endOverlay.fill(255); //white
-  endOverlay.textSize(32);
-  endOverlay.text(loseText, width/2, height/2, 200, 200);
+  endOverlay.textSize(32); //set text size
+  endOverlay.text(loseText, width/2, height/2, 200, 200); //draw loseText inside 200x200 textbox
   endOverlay.endDraw();
-  //end writing to endOverlay
+  //end drawing to endOverlay
   
   isRunning = false; //turn off game
   bgColour = color(100, 10, 10); //dark red background
@@ -62,20 +62,20 @@ void gameOverScreen()
 //check if any game over conditions have been met
 boolean hasPlayerLost() 
 {
-  //check if pilot has collided with enemy1 through enemy4
-  if (pilot.checkCollisionWithEnemy(enemy1.enemyX, enemy1.enemyY)) 
+  //check if wisp has collided with enemy1 through enemy4
+  if (wisp.checkCollisionWithEnemy(enemy1.enemyX, enemy1.enemyY)) 
   {
     return true;
   }
-  if (pilot.checkCollisionWithEnemy(enemy2.enemyX, enemy2.enemyY)) 
+  if (wisp.checkCollisionWithEnemy(enemy2.enemyX, enemy2.enemyY)) 
   {
     return true;
   }
-  if (pilot.checkCollisionWithEnemy(enemy3.enemyX, enemy3.enemyY)) 
+  if (wisp.checkCollisionWithEnemy(enemy3.enemyX, enemy3.enemyY)) 
   {
     return true;
   }
-  if (pilot.checkCollisionWithEnemy(enemy4.enemyX, enemy4.enemyY)) 
+  if (wisp.checkCollisionWithEnemy(enemy4.enemyX, enemy4.enemyY)) 
   {
     return true;
   }
@@ -96,10 +96,10 @@ boolean hasPlayerLost()
 //reset game positions, booleans, counters etc for new game
 void resetGame() 
 {
-  bgColour = color(200, 250, 150); //re-assign bg to a light green background
+  bgColour = color(5, 5, 30); //re-assign bg to a light green background
   
   //reset booleans
-  pilot.isCarryingWater = false;
+  wisp.isCarryingWater = false;
   isFireBurning = true;
   
   //re-assign starting positions
@@ -118,7 +118,7 @@ void resetGame()
   landingPadXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize landing pad position
   landingPadYPos = random(0+boundaryMargin, height-boundaryMargin);
   
-  pilot.placePilot(); //place pilot on landing pad
+  wisp.placeWisp(); //place wisp on landing pad
   
   endOverlay.beginDraw();
   endOverlay.clear(); //erase any overlay drawings from winning/losing last game
@@ -163,21 +163,21 @@ void wonTheGameScreen()
 void douseFlames()
 {
   //check for collision with player that's carrying water
-  if((dist(pilot.pilotX, pilot.pilotY, fireXPos, fireYPos) <= collisionSize) 
-  && (pilot.isCarryingWater == true))
+  if((dist(wisp.wispX, wisp.wispY, fireXPos, fireYPos) <= collisionSize) 
+  && (wisp.isCarryingWater == true))
   {    
     isFireBurning = false; //fire extinguished
-    pilot.isCarryingWater = false; //water load dropped
+    wisp.isCarryingWater = false; //key used and dropped
   }
 }
 
 
 
-//check if player touched landing pad after extinguishing fire
+//check if player touched landing pad after putting key in lock
 boolean hasPlayerWon()
 {
   //check for collision with player
-  if((dist(pilot.pilotX, pilot.pilotY, landingPadXPos, landingPadYPos) <= 10) 
+  if((dist(wisp.wispX, wisp.wispY, landingPadXPos, landingPadYPos) <= 10) 
   && (isFireBurning == false))
   {    
     isRunning = false; //stop game

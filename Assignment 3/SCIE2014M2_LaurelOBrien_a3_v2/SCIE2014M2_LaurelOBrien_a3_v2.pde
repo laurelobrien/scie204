@@ -13,14 +13,14 @@ float fireSize = 30; //square dimensions of fire
 boolean isRunning = false; //indicate if game is running
 boolean isFireBurning = true; //indicate if fire is burning
 boolean hasStarted = false; //indicate if game has been started with left click
-color bgColour = color(200, 250, 150); //background colour, changes with game state
+color bgColour = color(10, 5, 50); //background colour, changes with game state
 
 //smoke cloud variables
 int num = 30;
-float smokeX[] = new float[num];
-float smokeY[] = new float[num];
+float lightX[] = new float[num];
+float lightY[] = new float[num];
 color blueWater = color(50, 100, 240, 100); //low opacity blue
-color greySmoke = color(150, 30); //low opacity grey
+color greySmoke = color(200, 255, 255, 40); //low opacity grey
 
 //static object position variables
 float lakeXPos; //lake
@@ -34,10 +34,10 @@ int collisionSize = 30;
 
 PGraphics endOverlay; //PGraphics that holds win/lose overlay effect
 
-//declare and initialize c_pilot and c_enemy objects
+//declare and initialize c_player and c_enemy objects
 //
 //enemy() takes 2 arguments: greyscale color and square dimension
-c_pilot pilot = new c_pilot(); //new user-controlled object from c_player class
+c_player wisp = new c_player(); //new user-controlled object from c_player class
 enemy enemy1 = new enemy(color(100), 30); //4 new objects from enemy class
 enemy enemy2 = new enemy(color(200), 30);
 enemy enemy3 = new enemy(color(30), 30); 
@@ -56,7 +56,7 @@ void setup()
 
 
 
-//draw 4 enemies bouncing around the canvas, a pilot the player can control,
+//draw 4 enemies bouncing around the canvas, a wisp the player can control,
 //a lake to retrieve water from, a fire burning that needs to be extinguished,
 //and a landing pad for the player to go home to after they put out the flames.
 void draw() 
@@ -68,20 +68,21 @@ void draw()
   enemy2.drawEnemy();
   enemy3.drawEnemy();
   enemy4.drawEnemy();
-  lake(); //like
-  forestFire(); //fire
-  landingPad();  //landing pad
-  pilot.drawPilot(); //pilot
+  drawKeyGlow(lakeXPos, lakeYPos); //key's glow
+  drawKey(lakeXPos, lakeYPos); //key
+  drawLock(fireXPos, fireYPos);
+  landingPad(); //landing pad
+  wisp.drawWisp(); //wisp
   
   //run if game is running
   if (isRunning) {
-    pilot.movePilotFollowMouse(); //move pilot pos to mouse pos
+    wisp.moveWispFollowMouse(); //move wisp pos to mouse pos
     enemy1.moveEnemy(); //move enemy pos
     enemy2.moveEnemy();
     enemy3.moveEnemy();
     enemy4.moveEnemy();
     
-    pilot.checkWaterStorage(); //check if pilot has picked up water
+    wisp.checkKeyStorage(); //check if wisp has picked up water
     douseFlames(); //check if flames have been extinguished
     
     //run if any game-over condition has been met
