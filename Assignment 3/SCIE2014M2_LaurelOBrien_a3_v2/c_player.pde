@@ -28,10 +28,15 @@ void movePilotFollowMouse()
 
 
 
-//draw the pilot (ellipse)
+//draw the pilot and its smoke cloud pointing towards the mouse
 void drawPilot()
 {
+  //BEGIN TRANSFORMATIONS
   pushMatrix(); //isolate memory
+  
+  translate(pilot.pilotX, pilot.pilotY); //translate pilot back to its correct position
+  rotate(getPilotRotAng()); //rotate pilot by targetAngle
+  translate(pilot.pilotX*-1, pilot.pilotY*-1); //move pilot to canvas origin (0, 0)
   
   //draw smoke trail if game is running
   if (isRunning == true) 
@@ -39,6 +44,7 @@ void drawPilot()
     drawSmokeTrail(); //call drawSmokeTrail() with rgba arguments
   }
   
+  //draw shapes making up pilot
   fill(pilotColour); //plane body colour
   stroke(240, 10, 10); //edge of red underbelly
   strokeWeight(2); //thicker stroke
@@ -51,6 +57,7 @@ void drawPilot()
   rect(pilotX+10, pilotY-5, 3, 11); //right wing stripe
   
   popMatrix(); //done isolating memory
+  //END TRANSFORMATIONS
 }
 
 
@@ -118,6 +125,27 @@ void drawSmokeTrail()
     }
     ellipse(smokeX[index], smokeY[index], i, i);
   }
+}
+
+
+
+//calculate angle of rotation to make pilot point at mouse
+float getPilotRotAng()
+{
+  //assign angle based on difference between mouse and pilot position
+  angle = atan2(mouseY - pilot.pilotY, mouseX - pilot.pilotX);
+  
+  float direction = (angle - targetAngle) / TWO_PI;
+  direction -= round(direction);
+  direction *= TWO_PI;
+  
+  targetAngle += direction;
+  
+  //add 90 degrees rotation to compensate for visual "nose" of pilot
+  //not being the focus of the rotation calculation
+  targetAngle += radians(90);
+  
+  return targetAngle; //give method a returned float value
 }
 
 } //end of player class

@@ -21,6 +21,11 @@ float smokeY[] = new float[num];
 color blueWater = color(50, 100, 240, 100); //low opacity blue
 color greySmoke = color(200, 100); //low opacity grey
 
+float angle = 0;
+float targetAngle = 0;
+float easing = 0.05f;
+float tempAngle = 0;
+
 float lakeXPos;
 float lakeYPos;
 float fireXPos;
@@ -66,7 +71,11 @@ void draw()
   lake();
   forestFire();
   landingPad();
-  pilot.drawPilot();
+  
+  pilot.drawPilot(); //draw pilot
+  
+  //popMatrix();
+  //END TRANSFORMATIONS
   
   //run if game is running
   if (isRunning) {
@@ -94,5 +103,6 @@ void draw()
     fc ++; //increment frame count
   } //end of isRunning() check
 
+  println(pilot.getPilotRotAng());
 } //end of draw()
   
