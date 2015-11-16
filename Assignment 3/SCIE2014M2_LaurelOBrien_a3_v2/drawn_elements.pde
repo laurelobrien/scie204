@@ -4,29 +4,11 @@
 // these elements are pretty simple and don't require a class,
 // just their own function
 
-//draw lake in random, static position
-void lake() 
+//draw key in random, static position
+void key() 
 {
   fill(50, 100, 255); //blue
-  ellipse(lakeXPos, lakeYPos, 30, 30); //lake shape
-}
-
-
-
-//draw forest fire in random, static position
-void forestFire() 
-{
-  //check status of flames to choose fill colour
-  if (isFireBurning == false) 
-  {
-    fill(50, 20, 20); //extinguished: sooty brown
-  }
-  else 
-  {
-  fill(255, 80, 30); //burning: bright red
-  }
-  
-  rect(fireXPos, fireYPos, fireSize, fireSize); //rectangle of fire
+  ellipse(keyXPos, keyYPos, 30, 30); //key shape
 }
 
 
@@ -34,8 +16,11 @@ void forestFire()
 //draw landing pad in random, static position
 void landingPad() 
 {
-  fill(20, 200, 30); //dark green
+  stroke(200); //white stroke
+  strokeWeight(1);
+  fill(0); //black
   rect(landingPadXPos, landingPadYPos, 40, 40); //landing pad shape
+  noStroke(); //turn of stroke for following functions
 }
 
 
@@ -58,26 +43,57 @@ void drawKey(float x, float y)
 
 
 //draw glow that indicates collision border of key and makes it visible
-void drawKeyGlow(float x, float y) 
+void drawKeyBubble(float x, float y) 
 {
-  fill(10, 255, 255, 50); //low opacity cyan
-  ellipse(x, y, 40, 40); //big ellipse
-  ellipse(x, y, 25, 25); //smaller ellipse layering opacity
+  //draw bubble
+  fill(255, 120); //low opacity white
+  strokeWeight(2); //thicker stroke
+  stroke(255, 150); //lower opacity white
+  ellipse(x, y, objectSize, objectSize); //big ellipse
+  
+  //draw specular highlight on bubble
+  noStroke(); //turn off stroke 
+  fill(255); //opaque white
+  triangle(x-12, y-10, x-15, y, x-1, y-14); //shine on bubble
+  //ellipse(x, y, 25, 25); //smaller ellipse layering opacity
 }
 
 
 
-void drawLock(float x, float y) 
+void drawLockedDoor(float x, float y) 
 {
+  //draw door
   fill(200, 150, 100); //light brown
-  ellipse(x, y, 40, 40);
-  rect(x, y+10, 40, 20);
+  ellipse(x, y, objectSize, objectSize);
+  rect(x, y+10, objectSize, objectSize/2);
   
+  //draw keyhole outline
   fill(#F7C846); //bronze
-  ellipse(x, y-3, 20, 20);
-  rect(x, y+5, 10, 20);
+  ellipse(x, y-3, objectSize/2, objectSize/2);
+  rect(x, y+5, objectSize/4, objectSize/2);
   
-  fill(100, 50, 0); //dark brown
+  //check status of lock to choose fill colour of keyhole
+  if (isDoorLocked == false) 
+  {
+    fill(200, 150, 100); //light bronze: unlocked
+  }
+  else 
+  {
+  fill(100, 50, 0); //dark brown: locked
+  }
+  
+  //draw key hole
   ellipse(x, y-3, 13, 13);
   rect(x, y+7, 4, 10);
+}
+
+
+
+void starSmatter() 
+{
+  for (int stars = 0; stars < starChartX.length; stars ++) {
+    stroke(255); //white
+    strokeWeight(random(1, 2)); //randomize diameter of point()s
+    point(starChartX[stars], starChartY[stars]);
+  }
 }

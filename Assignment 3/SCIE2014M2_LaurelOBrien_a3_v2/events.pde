@@ -99,24 +99,25 @@ void resetGame()
   bgColour = color(5, 5, 30); //re-assign bg to a light green background
   
   //reset booleans
-  wisp.isCarryingWater = false;
-  isFireBurning = true;
+  wisp.isCarryingKey = false;
+  isDoorLocked = true;
+  isKeyPresent = true;
   
   //re-assign starting positions
   //
   //enemies in all 4 corners
-  enemy1.initialPosition(0+enemy1.enemyDiam, 0+enemy1.enemyDiam); //initial position of 4 enemy objects in 4 corners
-  enemy2.initialPosition(width-enemy2.enemyDiam, 0+enemy2.enemyDiam);
-  enemy3.initialPosition(0+enemy3.enemyDiam, height-enemy3.enemyDiam);
+  enemy1.initialPosition(enemy1.enemyDiam, enemy1.enemyDiam); 
+  enemy2.initialPosition(width-enemy2.enemyDiam, enemy2.enemyDiam);
+  enemy3.initialPosition(enemy3.enemyDiam, height-enemy3.enemyDiam);
   enemy4.initialPosition(width-enemy4.enemyDiam, height-enemy4.enemyDiam);
   
-  //lake, fire, and landing pad in random position inside boundaryMargin limits
-  lakeXPos = random(0+boundaryMargin, 640-boundaryMargin); //randomize lake position
-  lakeYPos = random(0+boundaryMargin, 480-boundaryMargin);
-  fireXPos = random(0+boundaryMargin, 640-boundaryMargin); //randomize fire position
-  fireYPos = random(0+boundaryMargin, 480-boundaryMargin);
-  landingPadXPos = random(0+boundaryMargin, width-boundaryMargin); //randomize landing pad position
-  landingPadYPos = random(0+boundaryMargin, height-boundaryMargin);
+  //key, lock, and landing pad in random position inside boundaryMargin limits
+  keyXPos = random(boundaryMargin, width-boundaryMargin); //randomize key position
+  keyYPos = random(boundaryMargin, height-boundaryMargin);
+  lockXPos = random(boundaryMargin, width-boundaryMargin); //randomize lock position
+  lockYPos = random(boundaryMargin, height-boundaryMargin);
+  landingPadXPos = random(boundaryMargin, width-boundaryMargin); //randomize landing pad position
+  landingPadYPos = random(boundaryMargin, height-boundaryMargin);
   
   wisp.placeWisp(); //place wisp on landing pad
   
@@ -132,9 +133,9 @@ void resetGame()
 ///////////////////////
 // win conditions
 //
-// 1. touch lake to pick up water, AND
-// 2. touch fire while carrying water to extinguish flames, AND
-// 3. touch landing pad after extinguishing flames
+// 1. touch key to pick it up, AND
+// 2. touch door while carrying key to unlock it, AND
+// 3. touch landing pad after unlocking door
 
 void wonTheGameScreen() 
 { 
@@ -159,15 +160,15 @@ void wonTheGameScreen()
   bgColour = color(255, 180, 160); //peachy pink background
 }
 
-//check if player touched fire while carrying water
-void douseFlames()
+//check if player touched lock while carrying water
+void unlockDoor()
 {
   //check for collision with player that's carrying water
-  if((dist(wisp.wispX, wisp.wispY, fireXPos, fireYPos) <= collisionSize) 
-  && (wisp.isCarryingWater == true))
+  if((dist(wisp.wispX, wisp.wispY, lockXPos, lockYPos) <= collisionSize) 
+  && (wisp.isCarryingKey == true))
   {    
-    isFireBurning = false; //fire extinguished
-    wisp.isCarryingWater = false; //key used and dropped
+    isDoorLocked = false; //lock extinguished
+    wisp.isCarryingKey = false; //key used and dropped
   }
 }
 
@@ -178,7 +179,7 @@ boolean hasPlayerWon()
 {
   //check for collision with player
   if((dist(wisp.wispX, wisp.wispY, landingPadXPos, landingPadYPos) <= 10) 
-  && (isFireBurning == false))
+  && (isDoorLocked == false))
   {    
     isRunning = false; //stop game
     return true; //player has done their job and landed safely: win!

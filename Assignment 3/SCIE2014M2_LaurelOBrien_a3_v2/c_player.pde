@@ -11,7 +11,7 @@ float wispSpeed = 4;//wisp's speed (rate of position change per frame)
 int wispSize = 30; //wisp size
 int numColl = 0;//number of collisions between player and bs
 float easing = 0.05; //percent of distance between mouse and wisp position
-boolean isCarryingWater = false;
+boolean isCarryingKey = false;
 color wispColour = color(250); //light grey
 
 float angle = 0;
@@ -48,9 +48,9 @@ void drawWisp()
   
   //draw shapes making up wisp
   fill(200, 255, 255, 50); //low opacity pale blue
-  ellipse(wispX, wispY, 40, 40); //wisp glow
+  ellipse(wispX, wispY, objectSize, objectSize); //wisp glow
   fill(200, 255, 255, 255); //pale blue
-  ellipse(wispX, wispY, 25, 25); //wisp body
+  ellipse(wispX, wispY, objectSize*0.625, objectSize*0.625); //wisp body
   
   fill(255); //white
   triangle(wispX-12, wispY-2, wispX-20, wispY+18, wispX-13, wispY+12); //left wing
@@ -59,7 +59,7 @@ void drawWisp()
   popMatrix(); //done isolating memory
   
   //if wisp picked up key
-  if (isCarryingWater) 
+  if (isCarryingKey) 
   {
     drawHoveringKey(); //draw small key hovering behind it
   }
@@ -94,9 +94,11 @@ boolean checkCollisionWithEnemy(float enemyX, float enemyY)
 void checkKeyStorage()
 {
   //check if distance between edge of player and edge of key is less than collision allowance
-  if(dist(wispX, wispY, lakeXPos, lakeYPos) < collisionSize)
+  if((dist(wispX, wispY, keyXPos, keyYPos) < collisionSize)
+  && isKeyPresent == true)
   {    
-    isCarryingWater = true; //there was a collision; wisp now carrying key
+    isCarryingKey = true; //there was a collision; wisp now carrying key
+    isKeyPresent = false; //colliding with this area won't pick up a new key
   }
 }
 
@@ -116,14 +118,14 @@ void drawLightTrail()
   for (int i = 0; i < num; i ++) {
     // which+1 is the the oldest in the arrays
     int index = (which+1 + i) % num; //wrap back to 0 upon reaching num
-    //check isCarryingWater to decide fill colour of smoke
-    if (isCarryingWater == true) 
+    //check isCarryingKey to decide fill colour of smoke
+    if (isCarryingKey == true) 
     {
-      fill(blueWater); //fill with blue
+      fill(blueTrail); //fill with blue
     } 
     else 
     {
-      fill(greySmoke); //fill with grey
+      fill(greyTrail); //fill with grey
     }
     
     //map i to a value between 2 and 15 to control size of smoke cloud
