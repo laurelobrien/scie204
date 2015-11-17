@@ -12,6 +12,7 @@ int fc = 0; //frame counter
 float objectSize = 40; //base size used for calculating size of game pieces
 float collisionSize = objectSize/2; //size used to calculate collision between game pieces
 float boundaryMargin = objectSize + 10; //minimum buffer distance from edge of canvas
+float rotateAngle = 0; //angle of rotation for wisp. == 0 when game isn't running
 
 //boolean variables
 boolean isRunning = false; //indicate if game is running
@@ -46,10 +47,10 @@ PGraphics endOverlay; //PGraphics that holds win/lose overlay effect
 //
 //enemy() takes 2 arguments: greyscale color and square dimension
 c_player wisp = new c_player(); //new user-controlled object from c_player class
-enemy enemy1 = new enemy(color(100), 30); //4 new objects from enemy class
-enemy enemy2 = new enemy(color(200), 30);
-enemy enemy3 = new enemy(color(30), 30); 
-enemy enemy4 = new enemy(color(250), 30); 
+enemy enemy1 = new enemy(color(200), objectSize); //4 new objects from enemy class
+enemy enemy2 = new enemy(color(200), objectSize);
+enemy enemy3 = new enemy(color(100), objectSize); 
+enemy enemy4 = new enemy(color(100), objectSize); 
 
 
 
@@ -72,12 +73,17 @@ void setup()
 
 
 
-//draw 4 enemies bouncing around the canvas, a wisp the player can control,
-//a key to retrieve water from, a lock burning that needs to be extinguished,
-//and a landing pad for the player to go home to after they put out the flames.
+//draw 4 enemies bouncing around the canvas to avoid, a wisp the player can control,
+//a key that can be picked up, a locked door that needs to be unlocked,
+//and a landing pad for the player to go home to after they unlock the door.
+//
+//you must go home to the landing pad after unlocking the door to win.
+//if you touch an enemy or take longer than 30 seconds, you lose.
+//
+//left click to start, right click to re-start.
 void draw() 
 {
-  background(bgColour); //cariable-colour background: erase last frame
+  background(bgColour); //variable-colour background: erase last frame
   starSmatter(); //call starSmatter to draw twinkling stars
 
   //draw all pieces
@@ -97,6 +103,8 @@ void draw()
   
   //run if game is running
   if (isRunning) {
+    rotateAngle = wisp.getWispRotAng(); //allow wisp to start rotating
+    
     wisp.moveWispFollowMouse(); //move wisp pos towards mouse pos
     enemy1.moveEnemy(); //move enemy pos
     enemy2.moveEnemy();

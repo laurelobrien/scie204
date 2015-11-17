@@ -4,15 +4,6 @@
 // these elements are pretty simple and don't require a class,
 // just their own function
 
-//draw key in random, static position
-void key() 
-{
-  fill(50, 100, 255); //blue
-  ellipse(keyXPos, keyYPos, 30, 30); //key shape
-}
-
-
-
 //draw landing pad in random, static position
 void landingPad() 
 {
@@ -42,7 +33,7 @@ void drawKey(float x, float y)
 
 
 
-//draw glow that indicates collision border of key and makes it visible
+//draw bubble that indicates collision border of key
 void drawKeyBubble(float x, float y) 
 {
   //draw bubble
@@ -89,11 +80,15 @@ void drawLockedDoor(float x, float y)
 
 
 
+//draw a smatter of stars:
+//200 random points that "twinkle" (change size slightly every frame).
+//they are randomized every time the whole program is opened,
+//but stay in position thereafter.
 void starSmatter() 
 {
   for (int stars = 0; stars < starChartX.length; stars ++) {
     stroke(255); //white
     strokeWeight(random(1, 2)); //randomize diameter of point()s
-    point(starChartX[stars], starChartY[stars]);
+    point(starChartX[stars], starChartY[stars]); //draw point based on stored random values
   }
 }

@@ -3,19 +3,18 @@
 
 class c_player
 {
-
 //declare and initialize attributes
-float wispX = 55; //wisp (x, y) position
-float wispY = 55;
+//
+float wispX; //wisp (x, y) position
+float wispY;
 float wispSpeed = 4;//wisp's speed (rate of position change per frame)
-int wispSize = 30; //wisp size
-int numColl = 0;//number of collisions between player and bs
+float wispSize = objectSize; //wisp size
+int numColl = 0;//number of collisions between player and enemies
 float easing = 0.05; //percent of distance between mouse and wisp position
-boolean isCarryingKey = false;
+boolean isCarryingKey = false; //indicate if wisp is carrying the key
 color wispColour = color(250); //light grey
-
-float angle = 0;
-float targetAngle = 0;
+float angle = 0; //current angle of rotation
+float targetAngle = 0; //angle between mouse and direction wisp is pointing
 
 
 
@@ -25,7 +24,8 @@ void moveWispFollowMouse()
   float distanceX = mouseX - wispX; //vert and horiz distance between mouse and wisp
   float distanceY = mouseY - wispY;
   
-  wispX += distanceX * easing; //move wisp n% of its current distance from mouse
+  //move wisp n% of its current distance from mouse
+  wispX += distanceX * easing;
   wispY += distanceY * easing;
 }
 
@@ -43,14 +43,14 @@ void drawWisp()
   pushMatrix(); //isolate memory for transformations
   
   translate(wisp.wispX, wisp.wispY); //translate wisp back to its correct position
-  rotate(getWispRotAng()); //rotate wisp by targetAngle
+  rotate(rotateAngle); //rotate wisp by targetAngle
   translate(wisp.wispX*-1, wisp.wispY*-1); //move wisp to canvas origin (0, 0)
   
   //draw shapes making up wisp
   fill(200, 255, 255, 50); //low opacity pale blue
-  ellipse(wispX, wispY, objectSize, objectSize); //wisp glow
+  ellipse(wispX, wispY, wispSize, wispSize); //wisp glow
   fill(200, 255, 255, 255); //pale blue
-  ellipse(wispX, wispY, objectSize*0.625, objectSize*0.625); //wisp body
+  ellipse(wispX, wispY, wispSize*0.625, wispSize*0.625); //wisp body
   
   fill(255); //white
   triangle(wispX-12, wispY-2, wispX-20, wispY+18, wispX-13, wispY+12); //left wing
@@ -109,16 +109,16 @@ void checkKeyStorage()
 void drawLightTrail()
 {
   //assign wisp's position this frame into lightX[] and lightY[]
-  int which = frameCount % num;
-  lightX[which] = wispX;
-  lightY[which] = wispY;
+  int trailIndex = frameCount % num;
+  lightX[trailIndex] = wispX;
+  lightY[trailIndex] = wispY;
   
   //loop through number of indices in smokeX/smokeY (num)
   //and draw an ellipse based on their stored coordinates
   for (int i = 0; i < num; i ++) {
-    // which+1 is the the oldest in the arrays
-    int index = (which+1 + i) % num; //wrap back to 0 upon reaching num
-    //check isCarryingKey to decide fill colour of smoke
+    //trailIndex + 1 is the the oldest in either array
+    int newIndex = (trailIndex + 1 + i) % num; //wrap back to 0 upon reaching num
+    //check isCarryingKey to decide fill colour of light trail
     if (isCarryingKey == true) 
     {
       fill(blueTrail); //fill with blue
@@ -129,9 +129,10 @@ void drawLightTrail()
     }
     
     //map i to a value between 2 and 15 to control size of smoke cloud
+    //as it is changed by i in for-loop
     float lightSize = map(i, 0, num, 5, 20);
     
-    ellipse(lightX[index], lightY[index], lightSize, lightSize); //draw smoke cloud
+    ellipse(lightX[newIndex], lightY[newIndex], lightSize, lightSize); //draw ellipses
   }
 }
 
@@ -143,11 +144,12 @@ float getWispRotAng()
   //assign angle based on difference between mouse and wisp position
   angle = atan2(mouseY - wisp.wispY, mouseX - wisp.wispX);
   
-  float direction = (angle - targetAngle) / TWO_PI;
-  direction -= round(direction);
-  direction *= TWO_PI;
+  //divide difference between current and target angle by 2PI
+  float direction = (angle - targetAngle) / TWO_PI; 
+  direction -= round(direction); //round direction and re-assign so it equals the difference
+  direction *= TWO_PI; // multiply by 2PI
   
-  targetAngle += direction;
+  targetAngle += direction; //re-assign targetAngle with direction it is moving added
   
   //add 90 degrees rotation to compensate for visual "nose" of wisp
   //not being the focus of the rotation calculation
@@ -164,9 +166,9 @@ void drawHoveringKey()
   pushMatrix(); //isolate memory for transformations
   
   translate(wispX-20, wispY+20); //translate to correct position behind wisp
-  scale(0.5); //scale down 50%
+  scale(0.6); //scale down 60%
   
-  drawKey(0, 0); //call drawKey(); to draw key at canvas origin
+  drawKey(0, 0); //call drawKey(); to draw key at canvas origin (save an extra translate())
   
   popMatrix(); //done isolating memory
 }

@@ -40,13 +40,16 @@ void gameOverScreen()
   println("GAME OVER, MAN. GAME OVER."); //output printed to console
   String loseText = "GAME OVER, MAN. GAME OVER."; //String to be displayed on canvas
   
-  //draw to endOverlay
+  //begin drawing to endOverlay
+  //
+  //draw translucent, coloured rectangle
   endOverlay.beginDraw();
   endOverlay.noStroke(); //turn off stroke inside PGraphic
   endOverlay.rectMode(CENTER); //draw rectangles (and textboxes) from their center
   endOverlay.fill(100, 10, 10, 160); //low opacity dark red
   endOverlay.rect(width/2, height/2, width, height); //rect filling canvas
   
+  //draw text with losing message
   endOverlay.fill(255); //white
   endOverlay.textSize(32); //set text size
   endOverlay.text(loseText, width/2, height/2, 200, 200); //draw loseText inside 200x200 textbox
@@ -96,7 +99,7 @@ boolean hasPlayerLost()
 //reset game positions, booleans, counters etc for new game
 void resetGame() 
 {
-  bgColour = color(5, 5, 30); //re-assign bg to a light green background
+  bgColour = color(5, 5, 30); //re-assign bg to a deep blue background
   
   //reset booleans
   wisp.isCarryingKey = false;
@@ -143,18 +146,20 @@ void wonTheGameScreen()
   String winText = "You won in "+str(fc/60)+" seconds.";
   
   //write to endOverlay
+  //
+  //draw translucent, coloured rectangle
   endOverlay.beginDraw();
   endOverlay.noStroke();
   endOverlay.rectMode(CENTER);
   endOverlay.fill(255, 180, 160, 160); //low opacity peachy pink
   endOverlay.rect(width/2, height/2, width, height); //rect filling canvas  
   
+  //draw text with winning message
   endOverlay.fill(255); //white
-  endOverlay.textSize(32);
-  endOverlay.text(winText, width/2, height/2, 200, 200);
+  endOverlay.textSize(32); //text size
+  endOverlay.text(winText, width/2, height/2, 200, 200); //draw winText inside 200x200 text box
   endOverlay.endDraw();
   //end writing to endOverlay
-  
   
   isRunning = false; //turn off game
   bgColour = color(255, 180, 160); //peachy pink background
@@ -163,11 +168,11 @@ void wonTheGameScreen()
 //check if player touched lock while carrying water
 void unlockDoor()
 {
-  //check for collision with player that's carrying water
+  //check for collision with player that's carrying a key
   if((dist(wisp.wispX, wisp.wispY, lockXPos, lockYPos) <= collisionSize) 
   && (wisp.isCarryingKey == true))
   {    
-    isDoorLocked = false; //lock extinguished
+    isDoorLocked = false; //door unlocked
     wisp.isCarryingKey = false; //key used and dropped
   }
 }
