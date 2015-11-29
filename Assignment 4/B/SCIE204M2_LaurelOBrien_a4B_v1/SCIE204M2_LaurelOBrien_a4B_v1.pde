@@ -31,12 +31,12 @@ float fontSize = 30;
 PFont lydian;
 
 //variables for layout and movement
-float horzMargin = 100; //margin on left and right of canvas
+float horzMargin = 200; //margin on left and right of canvas
 float vertMargin = 50; //margin on top and bottom of canvas
 //float distanceX;
 //float distanceY;
 float threshDist = 3; //threshold dist before target moves itself away from text
-float movForce = 0.03; //percent of prescribed distance text will move
+float movForce = 0.02; //percent of prescribed distance text will move
 
 //booleans
 boolean isPlaying = false; //indicate if motion graphics and music are playing
@@ -61,10 +61,10 @@ void setup()
   spectre = new Minim(this); //instantiate Minim object spectre
   musicPlayer = spectre.loadFile("coyotes.mp3"); //initialize musicPlayer with spectre.mp3
   
-  poemLine1.init(width/2, 100); //initialize poem and target locations for PoemLine objects
-  poemLine2.init(width/2, 300);
-  poemLine3.init(width/2, 500);
-  poemLine4.init(width/2, 700);
+  poemLine1.init(width/2, 180); //initialize poem and target locations for PoemLine objects
+  poemLine2.init(width/2, 260);
+  poemLine3.init(width/2, 340);
+  poemLine4.init(width/2, 530);
 }
 
 
