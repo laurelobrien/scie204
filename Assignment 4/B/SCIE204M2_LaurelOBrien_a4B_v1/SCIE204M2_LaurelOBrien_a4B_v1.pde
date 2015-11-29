@@ -114,7 +114,10 @@ void draw()
     musicPlayer.play(); //begin playing audio in musicPlayer
   }
   
-  //draw buttons
+  //move button positions
+  playButton.move();
+  
+  //draw buttons on canvas
   playButton.render();
   resetButton.render();
   
