@@ -30,7 +30,19 @@ String line4 = "giant ol' monsters afraid of the sharks";
 float fontSize = 30;
 PFont lydian;
 
+//variables for layout and movement
+float horzMargin = 100; //margin on left and right of canvas
+float vertMargin = 50; //margin on top and bottom of canvas
+//float distanceX;
+//float distanceY;
+float threshDist = 3; //threshold dist before target moves itself away from text
+float movForce = 0.03; //percent of prescribed distance text will move
 
+//instantiate objects
+PoemLine poemLine1 = new PoemLine(line1); //4 new PoemLine objects
+PoemLine poemLine2 = new PoemLine(line2);
+PoemLine poemLine3 = new PoemLine(line3);
+PoemLine poemLine4 = new PoemLine(line4);
 
 //runs once: set up initial values and states
 void setup() 
@@ -45,6 +57,11 @@ void setup()
    //initialize sound file and music player
   spectre = new Minim(this); //instantiate Minim object spectre
   musicPlayer = spectre.loadFile("coyotes.mp3"); //initialize musicPlayer with spectre.mp3
+  
+  poemLine1.init(width/2, 100); //initialize poem and target locations for PoemLine objects
+  poemLine2.init(width/2, 300);
+  poemLine3.init(width/2, 500);
+  poemLine4.init(width/2, 700);
 }
 
 
@@ -52,13 +69,24 @@ void setup()
 //runs continuously
 void draw() 
 {
-  background(forestPic);
+  background(forestPic); //set background image
+  blendMode(DIFFERENCE); //use DIFFERENCE blend mode to ensure text is always visible against bg
   
-  renderText();
+  poemLine1.moveTextToTarget();
+  poemLine2.moveTextToTarget();
+  poemLine3.moveTextToTarget();
+  poemLine4.moveTextToTarget();
+  
+  //render all PoemLines
+  poemLine1.renderText(); //draw text on screen
+  poemLine2.renderText(); //draw text on screen
+  poemLine3.renderText(); //draw text on screen
+  poemLine4.renderText(); //draw text on screen
 }
 
 
 
+/*
 void renderText() 
 {
   fill(255); //white
@@ -66,4 +94,4 @@ void renderText()
   textAlign(CENTER); //align text in the center
   blendMode(DIFFERENCE);
   text(line1, width/2, height/2); //line 1 of "Coyotes"
-}
+}*/
