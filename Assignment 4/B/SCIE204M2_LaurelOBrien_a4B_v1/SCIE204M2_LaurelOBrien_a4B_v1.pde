@@ -38,6 +38,9 @@ float vertMargin = 50; //margin on top and bottom of canvas
 float threshDist = 3; //threshold dist before target moves itself away from text
 float movForce = 0.03; //percent of prescribed distance text will move
 
+//booleans
+boolean isPlaying = false; //indicate if motion graphics and music are playing
+
 //instantiate objects
 PoemLine poemLine1 = new PoemLine(line1); //4 new PoemLine objects
 PoemLine poemLine2 = new PoemLine(line2);
@@ -69,29 +72,32 @@ void setup()
 //runs continuously
 void draw() 
 {
-  background(forestPic); //set background image
+  background(forestPic); //background image: erase last frame
   blendMode(DIFFERENCE); //use DIFFERENCE blend mode to ensure text is always visible against bg
   
-  poemLine1.moveTextToTarget();
-  poemLine2.moveTextToTarget();
-  poemLine3.moveTextToTarget();
-  poemLine4.moveTextToTarget();
-  
-  //render all PoemLines
+  //render all PoemLines on canvas
   poemLine1.renderText(); //draw text on screen
   poemLine2.renderText(); //draw text on screen
   poemLine3.renderText(); //draw text on screen
   poemLine4.renderText(); //draw text on screen
+  
+  //if isPlaying has been turned true by pressing the play button
+  if (isPlaying) 
+  {
+    //move target and text position
+    poemLine1.moveTextToTarget();
+    poemLine2.moveTextToTarget();
+    poemLine3.moveTextToTarget();
+    poemLine4.moveTextToTarget();
+    
+    musicPlayer.play(); //begin playing audio in musicPlayer
+  }
+} //end of draw()
+
+
+
+//detect button-clicks and toggle booleans accordingly
+void mouseClicked() {
+  isPlaying = ! isPlaying; //toggle value of isPlaying
 }
 
-
-
-/*
-void renderText() 
-{
-  fill(255); //white
-  textFont(lydian); //Lydian typeface
-  textAlign(CENTER); //align text in the center
-  blendMode(DIFFERENCE);
-  text(line1, width/2, height/2); //line 1 of "Coyotes"
-}*/
