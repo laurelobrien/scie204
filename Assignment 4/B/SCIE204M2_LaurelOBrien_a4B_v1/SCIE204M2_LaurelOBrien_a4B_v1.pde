@@ -7,6 +7,7 @@
 // lobrien14692@ecuad.ca
 
 //import sound-oriented library Minim
+
 //THIS DOESN'T WORK WITHOUT THE MINIM LIBRARY INSTALLED
 import ddf.minim.*;
 
@@ -19,8 +20,7 @@ AudioPlayer musicPlayer; //declare AudioPlayer object named musicPlayer
 
 //PImages
 PImage mountainPic; //background photo
-PImage playButton, resetButton, stopButton; //UI button graphics: 96 x 75 px
-PImage coyoteMarch; //animated gif of coyote walking
+PImage playIcon, resetIcon, stopIcon; //UI button graphics: 96 x 75 px
 PImage[] coyoteSeq = new PImage[41];
 
 //Strings — "Coyotes" by Modest Mouse
@@ -50,6 +50,11 @@ PoemLine poemLine2 = new PoemLine(line2);
 PoemLine poemLine3 = new PoemLine(line3);
 PoemLine poemLine4 = new PoemLine(line4);
 
+Button playButton; //2 button objects, initialized in setup()
+Button resetButton;
+
+
+
 //runs once: set up initial values and states
 void setup() 
 {
@@ -59,12 +64,12 @@ void setup()
   
   //initialize images and fonts
   mountainPic = loadImage("mountains.jpg");
-  coyoteMarch = loadImage("coyote_walking.gif");
-  playButton = loadImage("play.png");
-  resetButton = loadImage("reset.png");
-  stopButton = loadImage("stop.png");
+  playIcon = loadImage("play.png");
+  resetIcon = loadImage("reset.png");
+  stopIcon = loadImage("stop.png");
   lydian = createFont("lydian.ttf", fontSize);
   
+  //initialize coyoteSeq[] with frames of an animation (+1 due to file names)
   for (int i = 0; i < coyoteSeq.length; i ++) 
   {
     coyoteSeq[i] = loadImage((i+1) +".png"); //load corresponding image into coyoteSeq[] index
@@ -74,10 +79,14 @@ void setup()
   spectre = new Minim(this); //instantiate Minim object spectre
   musicPlayer = spectre.loadFile("coyotes.mp3"); //initialize musicPlayer with spectre.mp3
   
+  //2 new button objects for play and reset
+  playButton = new Button(playIcon, 30, 30); 
+  resetButton = new Button(resetIcon, 30, 130);
+  
   poemLine1.init(width/2, 180); //initialize poem and target locations for PoemLine objects
   poemLine2.init(width/2, 260);
   poemLine3.init(width/2, 340);
-  poemLine4.init(width/2, 530);
+  poemLine4.init(width/2, 580);
 }
 
 
@@ -93,8 +102,6 @@ void draw()
   poemLine3.renderText(); //draw text on screen
   poemLine4.renderText(); //draw text on screen
   
-  drawButtons();
-  
   //if isPlaying has been turned true by pressing the play button
   if (isPlaying) 
   {
@@ -107,18 +114,12 @@ void draw()
     musicPlayer.play(); //begin playing audio in musicPlayer
   }
   
-  //image(coyoteMarch, 100, 100);
-  image(coyoteSeq[frameCount%41], 100, 500);
+  //draw buttons
+  playButton.render();
+  resetButton.render();
+  
+  renderGif(500);
 } //end of draw()
-
-
-
-//draw buttons
-void drawButtons() 
-{
-  image(playButton, 30, 30); //play button
-  image(resetButton, 30, 120); //reset button
-}
 
 
 
@@ -141,9 +142,11 @@ void initGif()
 } //end of initGif()
 
 
-
+//loop through coyoteSeq[] according to frameCount, wrapping at the end,
+//and draw the stored image on canvas
 void renderGif(int x) 
 {
-  image(coyoteSeq[frameCount%41], x, 200);
+  //draw frame of coyote walking at fixed y pos, and variable x pos
+  image(coyoteSeq[frameCount % coyoteSeq.length], x, 680);
 }
 
