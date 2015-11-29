@@ -18,7 +18,10 @@ Minim spectre; //declare Minim object named spectre ("Coyote" by Modest Mouse)
 AudioPlayer musicPlayer; //declare AudioPlayer object named musicPlayer
 
 //PImages
-PImage forestPic;
+PImage mountainPic; //background photo
+PImage playButton, resetButton, stopButton; //UI button graphics: 96 x 75 px
+PImage coyoteMarch; //animated gif of coyote walking
+PImage[] coyoteSeq = new PImage[41];
 
 //Strings — "Coyotes" by Modest Mouse
 String line1 = "coyotes tip-toe through the snow after dark";
@@ -51,11 +54,21 @@ PoemLine poemLine4 = new PoemLine(line4);
 void setup() 
 {
   size(1200, 900); //canvas size
+  frameRate(24);
   noStroke(); //remove stroke
   
-  //initialize images and fonts that need to be loaded
-  forestPic = loadImage("forest.jpeg");
+  //initialize images and fonts
+  mountainPic = loadImage("mountains.jpg");
+  coyoteMarch = loadImage("coyote_walking.gif");
+  playButton = loadImage("play.png");
+  resetButton = loadImage("reset.png");
+  stopButton = loadImage("stop.png");
   lydian = createFont("lydian.ttf", fontSize);
+  
+  for (int i = 0; i < coyoteSeq.length; i ++) 
+  {
+    coyoteSeq[i] = loadImage((i+1) +".png"); //load corresponding image into coyoteSeq[] index
+  }
   
    //initialize sound file and music player
   spectre = new Minim(this); //instantiate Minim object spectre
@@ -72,14 +85,15 @@ void setup()
 //runs continuously
 void draw() 
 {
-  background(forestPic); //background image: erase last frame
-  blendMode(DIFFERENCE); //use DIFFERENCE blend mode to ensure text is always visible against bg
+  background(mountainPic); //background image: erase last frame
   
   //render all PoemLines on canvas
   poemLine1.renderText(); //draw text on screen
   poemLine2.renderText(); //draw text on screen
   poemLine3.renderText(); //draw text on screen
   poemLine4.renderText(); //draw text on screen
+  
+  drawButtons();
   
   //if isPlaying has been turned true by pressing the play button
   if (isPlaying) 
@@ -92,12 +106,44 @@ void draw()
     
     musicPlayer.play(); //begin playing audio in musicPlayer
   }
+  
+  //image(coyoteMarch, 100, 100);
+  image(coyoteSeq[frameCount%41], 100, 500);
 } //end of draw()
+
+
+
+//draw buttons
+void drawButtons() 
+{
+  image(playButton, 30, 30); //play button
+  image(resetButton, 30, 120); //reset button
+}
 
 
 
 //detect button-clicks and toggle booleans accordingly
 void mouseClicked() {
   isPlaying = ! isPlaying; //toggle value of isPlaying
+}
+
+
+
+//initialize an image sequence into a PImage array for animated playback
+void initGif() 
+{
+  //for every index in coyoteSeq
+  //(starting at one due to image names)
+  for (int i = 1; i == coyoteSeq.length; i ++) 
+  {
+    coyoteSeq[i] = loadImage(i +".png"); //load corresponding image into coyoteSeq[] index
+  }
+} //end of initGif()
+
+
+
+void renderGif(int x) 
+{
+  image(coyoteSeq[frameCount%41], x, 200);
 }
 
