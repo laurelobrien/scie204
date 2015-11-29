@@ -111,11 +111,18 @@ void draw()
     poemLine3.moveTextToTarget();
     poemLine4.moveTextToTarget();
     
+    //move buttons and change play/stop PNG
+    playButton.icon = stopIcon; //change PNG of play button
+    playButton.move(); //move play button
+    resetButton.move(); //move reset button
+    
     musicPlayer.play(); //begin playing audio in musicPlayer
   }
   
-  //move button positions
-  playButton.move();
+  if (isPlaying == false) 
+  {
+    playButton.icon = playIcon;
+  }
   
   //draw buttons on canvas
   playButton.render();
@@ -127,8 +134,13 @@ void draw()
 
 
 //detect button-clicks and toggle booleans accordingly
-void mouseClicked() {
-  isPlaying = ! isPlaying; //toggle value of isPlaying
+void mouseReleased() {
+  //if mouse is hovering inside play button area when released
+  if (playButton.detectMouse()) 
+  {
+    isPlaying = ! isPlaying; //toggle value of isPlaying
+  }
+  
 }
 
 

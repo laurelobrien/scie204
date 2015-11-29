@@ -15,12 +15,12 @@ class Button
   float landLeft = 30; //left and right landing positions to move towards during transitions
   float landRight = width - 30 - w;
   float buttonVel; //velocity of button movement
-  boolean isButtonHover = false; //indicate if mouse is inside button area
+  
   PImage icon; //PNG used to display button
   float dist; //distance between button and target location (landLeft or landRight)
-  float movForce; //percent of dist button will move
-  float distanceX;
-  float easing = 0.05;
+  float movForce = 0.12; //percent of dist button will move
+  
+  boolean isButtonHover = false; //indicate if mouse is inside button area
   
   ////////////////////////
   //constructor
@@ -67,7 +67,7 @@ class Button
     //if button has not reached left or right landing position yet:
     if (dist > 1) 
     {
-      buttonVel = dist * easing; //calculate velocity as percent of distance remaining
+      buttonVel = dist * movForce; //calculate velocity as percent of distance remaining
       x += buttonVel; //apply the velocity to button x position
     }
   }
@@ -75,7 +75,7 @@ class Button
   //draw button on canvas
   void render() 
   {
-    image(icon, x, y); //PImage provided in argument drawn at x and y pos
+    image(icon, x, y); //draw PNG on canvas at current position with current PImage
   }
 
 } //end of renderButton()
