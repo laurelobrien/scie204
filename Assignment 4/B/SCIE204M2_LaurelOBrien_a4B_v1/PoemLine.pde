@@ -14,25 +14,30 @@ class PoemLine
   float targetX, targetY; //target position to move towards
   float distanceX, distanceY; //distance between text pos and target pos
   float dist;
-
-  //constructor
-  PoemLine(String tempText) 
+  float movForce; //percent of dist text will move
+  float xHome = 600; //fixed horizontal home position
+  float yHome; //variable vertical home position
+  
+  //constructor: how arguments are to be accepted and used
+  PoemLine(String tempText, float tempYHome, float tempMovForce) 
   {
-    text = tempText; //assign text as provided tempText argument
+    text = tempText; //specific line of poem in String form
+    yHome = tempYHome; //y position before hitting play or after reset
+    movForce = tempMovForce; //amount of change in position during every frame of movement
   }
   
   //methods
   //
   //initialize text and target starting position
-  void init(float x, float y) 
+  void init() 
   {
-    //text: position based on provided arguments
-    textX = x;
-    textY = y;
+    //text: home position
+    textX = xHome;
+    textY = yHome;
     
     //target: position is random
     targetX = random(width);
-    targetY = random(height);
+    targetY = random(height - vertMargin); //target is never in area that coyotes march
   }
   
   
@@ -45,9 +50,9 @@ class PoemLine
     distanceY = targetY - textY; //vertically
     dist = dist(textX, textY, targetX, targetY); //distance this frame between text and target
     
-    //if very close to target
+    //if text has reached target and doesn't need to stop there as part of a reset,
     //pick a new random target position inside canvas margins
-    if (dist < threshDist)
+    if (dist < 3 && !isResetting)
     {
       targetX = random(0+horzMargin, width-horzMargin);
       targetY = random(0+vertMargin, height-vertMargin);
