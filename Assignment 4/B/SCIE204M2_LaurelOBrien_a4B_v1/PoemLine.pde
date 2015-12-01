@@ -36,7 +36,7 @@ class PoemLine
     textY = yHome;
     
     //target: position is random
-    targetX = random(width);
+    targetX = random(width - horzMargin);
     targetY = random(height - vertMargin); //target is never in area that coyotes march
   }
   
@@ -69,7 +69,7 @@ class PoemLine
     
     //when the magnitude of the dist is bigger than the threshold dist,
     //move text towards the target
-    if(dist > threshDist)
+    if(dist > 3)
     {
       textVX = distanceX * movForce; //calculate velocity in x and y axes
       textVY = distanceY * movForce;

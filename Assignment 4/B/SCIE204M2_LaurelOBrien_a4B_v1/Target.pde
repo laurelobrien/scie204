@@ -10,9 +10,8 @@
 //happens when reset button is pressed
 void resetEverything() 
 {
-  
-  
-  //reassign all PoemLine objects' target to its home position.
+  //reassign all PoemLine objects' target to its home position
+  //
   //x position changed to home
   poemLine1.targetX = poemLine1.xHome;
   poemLine2.targetX = poemLine2.xHome;
@@ -42,6 +41,8 @@ void mouseReleased() {
   if (playButton.detectMouse()) 
   {
     isPlaying = ! isPlaying; //toggle value of isPlaying
+    hasReachedHome = false; //button needs to move to a new home position
+    demoStarted = true; //demo was started for the first time
     
     //if play button was toggled to pause music and isPlaying is now false:
     if (!isPlaying) 

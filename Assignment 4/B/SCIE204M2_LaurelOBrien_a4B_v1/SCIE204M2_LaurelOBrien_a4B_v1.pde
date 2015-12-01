@@ -1,19 +1,27 @@
-///////////////////////
-//
+////////////////////////
 // a4B
 //
 // Laurel O'Brien
 // 20151128
 // lobrien14692@ecuad.ca
+//
+// Note for David: everything works except the events that are triggered
+// for a reset (upon pressing reset button) only start being rendered when the demo
+// is running (isRunning == true). This is due to a logical failure of relying on
+// move functions gated inside an if(isPlaying) check, which I know how to fix
+// but am too tired to stay awake at my keyboard right now! I will upload a new
+// version to moodle after a nap.
+////////////////////////
+
+
 
 //import sound-oriented library Minim
-
+//
 //THIS DOESN'T WORK WITHOUT THE MINIM LIBRARY INSTALLED
 import ddf.minim.*;
 
-/* declare and initialize global variables/objects/arrays/et al
--------------------------------------------------------------------*/
-
+// declare and initialize global variables/objects/arrays/et al
+//
 //objects for playing sound
 Minim song; //declare Minim object named song ("Coyote" by Modest Mouse)
 AudioPlayer musicPlayer; //declare AudioPlayer object named musicPlayer
@@ -21,12 +29,9 @@ AudioPlayer musicPlayer; //declare AudioPlayer object named musicPlayer
 //PImages
 PImage mountainPic; //background photo
 PImage playIcon, resetIcon, stopIcon; //UI button graphics: 96 x 75 px
-PImage[] coyoteSeq = new PImage[41];
+PImage[] coyoteSeq = new PImage[41]; //PImage array for animating "marching ants" (coyotes)
 
-int coyoteFrame; //store frame number of coyote animation 
-int prevFrame; //store previous frame's value of coyoteFrame
-
-//Strings — "Coyotes" by Modest Mouse
+//Strings — lyrics from "Coyotes" by Modest Mouse
 String line1 = "coyotes tip-toe through the snow after dark";
 String line2 = "at home with the ghosts in the national parks";
 String line3 = "man-kind's behavin' like some serial killer";
@@ -36,32 +41,34 @@ String line6 = "and we say “we're in love with everything”";
 String line7 = "and we lie, we love to lie.";
 
 //variables for rendering Strings
-float fontSize = 36;
-PFont lydian;
+float fontSize = 36; //pt size of font
+PFont lydian; //PFont object
 
 //variables for layout and movement
-float horzMargin = 200; //margin on left and right of canvas
-float vertMargin = 200; //margin on top & bottom of canvas: text doesn't touch marching coyotes
-float threshDist = 3; //threshold dist before target moves itself away from text
+float horzMargin = 400; //margin on left and right of canvas
+float vertMargin = 175; //margin on top & bottom of canvas: text doesn't touch marching coyotes
+float mountainX, mountainY; //for parallax effect
 
 //booleans
 boolean isPlaying = false; //indicate if motion graphics and music are playing
 boolean isResetting = false; //indicate is program is resetting itself
+boolean hasReachedHome = true; //indicate if button has moved all the way to its target
+boolean demoStarted = false;
 
-//instantiate poem lines
-PoemLine poemLine1 = new PoemLine(line1, 80, 0.05); //7 new PoemLine objects
+//insantiate PoemLine objects with String, y home position, and movForce
+PoemLine poemLine1 = new PoemLine(line1, 80, 0.05);
 PoemLine poemLine2 = new PoemLine(line2, 150, 0.04);
 PoemLine poemLine3 = new PoemLine(line3, 220, 0.03);
 PoemLine poemLine4 = new PoemLine(line4, 290, 0.02);
-PoemLine poemLine5 = new PoemLine(line5, 570, 0.05);
-PoemLine poemLine6 = new PoemLine(line6, 640, 0.04);
-PoemLine poemLine7 = new PoemLine(line7, 710, 0.03);
+PoemLine poemLine5 = new PoemLine(line5, 600, 0.05);
+PoemLine poemLine6 = new PoemLine(line6, 670, 0.04);
+PoemLine poemLine7 = new PoemLine(line7, 740, 0.03);
 
 
 //instantiate marching-ant-style animated coyotes
-MarchingAnt coyote1 = new MarchingAnt(-200);
-MarchingAnt coyote2 = new MarchingAnt(-600);
-MarchingAnt coyote3 = new MarchingAnt(-1000);
+MarchingCoyote coyote1 = new MarchingCoyote(-200);
+MarchingCoyote coyote2 = new MarchingCoyote(-600);
+MarchingCoyote coyote3 = new MarchingCoyote(-1000);
 
 //2 button objects, instatiated in setup()
 Button playButton; 
@@ -77,20 +84,21 @@ void setup()
   noStroke(); //remove stroke
   
   //initialize images and fonts
-  mountainPic = loadImage("mountains.jpg");
+  mountainPic = loadImage("mountains.jpg"); //stock photo from unsplash.com
   playIcon = loadImage("play.png");
   resetIcon = loadImage("reset.png");
   stopIcon = loadImage("stop.png");
   lydian = createFont("lydian.ttf", fontSize);
   
-  //initialize coyoteSeq[] with frames of an animation (+1 due to file names)
+  //initialize coyoteSeq[] with frames of an animation (+1 due to file names).
+  //these are PNGs extracted from a gif animation, used with permission
   for (int i = 0; i < coyoteSeq.length; i ++) 
   {
     coyoteSeq[i] = loadImage((i+1) +".png"); //load corresponding image into coyoteSeq[] index
   }
   
   //initialize sound file and music player
-  song = new Minim(this); //instantiate Minim object song
+  song = new Minim(this); //instcoyoteiate Minim object song
   musicPlayer = song.loadFile("coyotes.mp3"); //initialize musicPlayer with song.mp3
   
   //2 new button objects for play and reset
@@ -129,7 +137,13 @@ void setup()
 //initial positions, and the music will start from the beginning when play is next pressed.
 void draw() 
 {
-  background(mountainPic); //background image: erase last frame
+  //map the position of poemLine1 to a much smaller area to move the background image
+  mountainX = map(poemLine1.textX, 0+horzMargin, width-horzMargin, width/2-10, width/2+10);
+  mountainY = map(poemLine1.textY, 0+vertMargin, height-vertMargin, height/2-10, height/2+10);
+  
+  imageMode(CENTER); //draw images from their center
+  image(mountainPic, mountainX, mountainY); //act as a bg, move to create parallax effect
+  imageMode(CORNER); //draw images from their corner for future images
   
   //render all PoemLines on canvas
   poemLine1.renderText(); //draw text on screen
@@ -152,30 +166,37 @@ void draw()
     poemLine6.moveTextToTarget();
     poemLine7.moveTextToTarget();
     
-    //move buttons and change play/stop PNG
-    playButton.icon = stopIcon; //change PNG of play button
-    playButton.move(); //move play button
-    resetButton.move(); //move reset button
-   
-    musicPlayer.play(); //play audio in musicPlayer
-    
-    animateCoyotes(); //draw instances of MarchingAnt on-screen
+    playButton.icon = stopIcon; //PNG of play button is a pause icon
   } 
+  //else, demo is not running, so:
   else 
   {
     //play/pause button displays play icon
     playButton.icon = playIcon;
-    
-    //coyotes are drawn but stop moving
-    coyote1.render();
-    coyote2.render();
-    coyote3.render();
+  }
+  
+  //if demo has started for the first time, start animating coyotes.
+  //they are never turned off; when program is stopped their position
+  //just no longer wraps them back onto the canvas, to allow for them to
+  //walk off-screen.
+  if (demoStarted) 
+  {
+    animateCoyotes(); //draw instances of MarchingCoyote on-screen
+  }
+  
+  
+  //if button is not at its home position
+  if (!hasReachedHome) 
+  {
+    //move button towards its home position
+    playButton.move(); //move play button
+    resetButton.move(); //move reset button
   }
   
   //if program is resetting
   if (isResetting) 
   {
-    //if all coyotes have exited canvas
+    //if all coyotes have exited canvas indicate the reset is done
     if(coyote1.x > width && coyote2.x > width && coyote3.x > width) 
     {
       isPlaying = false; //turn off player
@@ -185,6 +206,11 @@ void draw()
       musicPlayer.pause();
       musicPlayer.rewind();  
     }
+  } 
+  //else, reset is not happening so if demo is running:
+  else if (isPlaying)
+  {
+    musicPlayer.play(); //play audio in musicPlayer
   }
   
   //draw buttons on canvas
@@ -207,8 +233,8 @@ void initAnimation()
 
 
 
-//call move and render functions for each MarchingAnt object.
-//every program frame the MarchingAnt object displays a "frame" of its own
+//call move and render functions for each MarchingCoyote object.
+//every program frame the MarchingCoyote object displays a "frame" of its own
 //from a PImage array and advances across the canvas, wrapping at the edge.
 void animateCoyotes() 
 {
