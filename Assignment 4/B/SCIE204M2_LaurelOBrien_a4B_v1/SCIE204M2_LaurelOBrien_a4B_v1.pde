@@ -4,14 +4,7 @@
 // Laurel O'Brien
 // 20151128
 // lobrien14692@ecuad.ca
-//
-// Note for David: everything works except the events that are triggered
-// for a reset (upon pressing reset button) only start being rendered when the demo
-// is running (isRunning == true). This is due to a logical failure of relying on
-// move functions gated inside an if(isPlaying) check, which I know how to fix
-// but am too tired to stay awake at my keyboard right now! I will upload a new
-// version to moodle after a nap.
-////////////////////////
+
 
 
 
@@ -67,8 +60,8 @@ PoemLine poemLine7 = new PoemLine(line7, 740, 0.03);
 
 //instantiate marching-ant-style animated coyotes
 MarchingCoyote coyote1 = new MarchingCoyote(-200);
-MarchingCoyote coyote2 = new MarchingCoyote(-600);
-MarchingCoyote coyote3 = new MarchingCoyote(-1000);
+MarchingCoyote coyote2 = new MarchingCoyote(-583);
+MarchingCoyote coyote3 = new MarchingCoyote(-867);
 
 //2 button objects, instatiated in setup()
 Button playButton; 
@@ -197,7 +190,7 @@ void draw()
   if (isResetting) 
   {
     //if all coyotes have exited canvas indicate the reset is done
-    if(coyote1.x > width && coyote2.x > width && coyote3.x > width) 
+    if(coyote1.x >= width && coyote2.x >= width && coyote3.x >= width) 
     {
       isPlaying = false; //turn off player
       isResetting = false; //reset is finished
@@ -250,4 +243,3 @@ void animateCoyotes()
   coyote3.move();
   coyote3.render();
 } //end of animateCoyotes()
-
