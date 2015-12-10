@@ -15,7 +15,6 @@ class MarchingCoyote
   float initPos; //offset 3 different positions from each other
   int offset;
   
-  
   //constructor
   MarchingCoyote(float tempInitPos) 
   {
@@ -26,7 +25,7 @@ class MarchingCoyote
   void move() 
   {
     //if x position is past the right edge of the canvas and the program isn't resetting itself
-    if (x > width && (!isResetting || !isPlaying)) 
+    if (x > width && !isResetting) 
     {
       x = 0 - w; //wrap position to beginning of canvas, minus PNG width so it's off-screen
     }
@@ -40,6 +39,6 @@ class MarchingCoyote
     //draw image from coyoteSeq array based on frameCount,
     //wrapping at the end of the animation
     image(coyoteSeq[frameCount % coyoteSeq.length], x, y);
-  } //end of render
+  } //end of render()
 
 }
